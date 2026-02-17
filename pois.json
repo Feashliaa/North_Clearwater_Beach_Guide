@@ -91,12 +91,12 @@
         "id": 9,
         "name": "Surfside Tap House",
         "category": "nightlife",
-        "lat": 27.979,
-        "lng": -82.8265,
-        "address": "14 Rockaway St, Clearwater Beach, FL",
+        "lat": 27.97842,
+        "lng": -82.82728,
+        "address": "395 Mandalay Ave, Clearwater, FL 33767",
         "description": "Chill craft beer bar steps from the beach. Great selection of local brews, live music on weekends, and a laid-back island vibe.",
-        "link": null,
-        "linkLabel": null
+        "link": "https://surfsidetaphouse.com/",
+        "linkLabel": "Visit Website"
     },
     {
         "id": 10,
