@@ -163,5 +163,16 @@
         "description": "Set on Clearwater Beach Island and overlooking the Gulf of Mexico, this laid-back hotel is a 2-minute walk from Clearwater Beach, a mile from Clearwater Marine Aquarium and 7 miles from Highway 19.",
         "link": "https://www.marriott.com/en-us/hotels/tpaab-ac-hotel-clearwater-beach/overview/",
         "linkLabel": "Visit Website"
+    },
+    {
+        "id": 16,
+        "name": "Flipside Pizza",
+        "category": "dining",
+        "lat": 27.98036,
+        "lng": -82.8254,
+        "address": "455 E Shore Dr, Clearwater, FL 33767",
+        "description": "Now open! A beach day doesn't count until you get Flipside Pizza. Stop by for handcrafted pizzas and bold grinders that go big on flavor. We proudly serve local beers, organic wines, and sunny cocktails. Enjoy good times and Clearwater Beach charm at Flipside! Located on the Marina at Courtyard Clearwater Beach",
+        "link": "https://eatflipsidepizza.com/",
+        "linkLabel": null
     }
 ]
