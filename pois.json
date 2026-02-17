@@ -185,5 +185,16 @@
         "description": "Colorful watering hole with a nautical vibe, plus nightly DJ music, happy hour, pool tables & darts.",
         "link": "http://theshipwreckclearwaterbeach.com/",
         "linkLabel": "Visit Website"
+    },
+    {
+        "id": 20,
+        "name": "Fairfield by Marriott Inn & Suites Clearwater Beach",
+        "category": "hotels",
+        "lat": 27.98808,
+        "lng": -82.82512,
+        "address": "650 Bay Esplanade, Clearwater Beach, FL 33767",
+        "description": "Offering views of the Gulf of Mexico, this informal hotel is a 4-minute walk from Clearwater Beach, a mile from SR-60 and 2 miles from Clearwater Marine Aquarium.",
+        "link": "https://www.marriott.com/en-us/hotels/tpafw-fairfield-inn-and-suites-clearwater-beach/overview/?scid=f2ae0541-1279-4f24-b197-a979c79310b0",
+        "linkLabel": "Visit Website"
     }
 ]
