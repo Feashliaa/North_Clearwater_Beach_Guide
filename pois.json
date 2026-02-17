@@ -174,5 +174,16 @@
         "description": "Located near the beach, this no-frills cafe offers a seafood-focused menu & live music.",
         "link": "https://clearskyrestaurants.com/cafe/",
         "linkLabel": "Visit Website"
+    },
+    {
+        "id": 19,
+        "name": "The Shipwreck",
+        "category": "nightlife",
+        "lat": 27.98777,
+        "lng": -82.82647,
+        "address": "647 Mandalay Ave, Clearwater, FL 33767",
+        "description": "Colorful watering hole with a nautical vibe, plus nightly DJ music, happy hour, pool tables & darts.",
+        "link": "http://theshipwreckclearwaterbeach.com/",
+        "linkLabel": "Visit Website"
     }
 ]
