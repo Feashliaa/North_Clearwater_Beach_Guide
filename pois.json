@@ -56,14 +56,14 @@
     },
     {
         "id": 6,
-        "name": "Clearwater Beach Marina",
-        "category": "attractions",
-        "lat": 27.9752,
-        "lng": -82.823,
-        "address": "25 Causeway Blvd, Clearwater Beach, FL",
+        "name": "Clearwater Beach Municipal Marina",
+        "category": "shopping",
+        "lat": 27.97679,
+        "lng": -82.82636,
+        "address": "25 Causeway Blvd, Clearwater, FL 33767",
         "description": "Hub for fishing charters, dolphin cruises, parasailing, and jet ski rentals. Book a sunset cruise for an unforgettable evening on the water.",
-        "link": null,
-        "linkLabel": null
+        "link": "https://www.myclearwater.com/government/city-departments/beach-marina",
+        "linkLabel": "Visit Website"
     },
     {
         "id": 7,
