@@ -207,5 +207,16 @@
         "description": "Dolphins love the Little Toot and we offer our passengers a unique and memorable experience at affordable prices. Sightseeing tours available on the Original Little Toot and the Little Toot II.\n\nLocated at 25 Causeway Blvd. Slip 12\nClearwater Beach",
         "link": "https://www.littletoot.us/",
         "linkLabel": "Visit Website"
+    },
+    {
+        "id": 22,
+        "name": "Caladesi Island State Park",
+        "category": "nature",
+        "lat": 28.02467,
+        "lng": -82.81964,
+        "address": "1 Causeway Blvd, Dunedin, FL 34698",
+        "description": "Island park with white sand beaches plus swimming, boating, fishing & picnic facilities.",
+        "link": "https://www.floridastateparks.org/parks-and-trails/caladesi-island-state-park",
+        "linkLabel": "Visit Website"
     }
 ]
