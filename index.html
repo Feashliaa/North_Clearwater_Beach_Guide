@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>North Clearwater Beach Guide</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+    <link rel="icon" type="image/ico" href="favicon.ico" />
+</head>
+
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="logo-mark">🌊</div>
+            <div class="title">
+                <h1>North Clearwater Beach<span>Interactive Guide</span></h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Filters -->
+    <div class="filter-bar" id="filterBar">
+        <button class="filter-pill active" data-category="all">All</button>
+        <button class="filter-pill" data-category="dining">
+            <span class="dot" style="background:#E07A5F"></span>Dining
+        </button>
+        <button class="filter-pill" data-category="attractions">
+            <span class="dot" style="background:#0077B6"></span>Attractions
+        </button>
+        <button class="filter-pill" data-category="nature">
+            <span class="dot" style="background:#57A773"></span>Nature
+        </button>
+        <button class="filter-pill" data-category="shopping">
+            <span class="dot" style="background:#9B5DE5"></span>Shopping
+        </button>
+        <button class="filter-pill" data-category="nightlife">
+            <span class="dot" style="background:#E05299"></span>Nightlife
+        </button>
+        <button class="filter-pill" data-category="services">
+            <span class="dot" style="background:#2EC4B6"></span>Services
+        </button>
+    </div>
+
+    <!-- GPS Button -->
+    <button class="gps-btn" id="gpsBtn" title="Find my location">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path
+                d="M12 2C12.5523 2 13 2.44772 13 3V4.06189C16.6187 4.51314 19.4869 7.38128 19.9381 11H21C21.5523 11 22 11.4477 22 12C22 12.5523 21.5523 13 21 13H19.9381C19.4869 16.6187 16.6187 19.4869 13 19.9381V21C13 21.5523 12.5523 22 12 22C11.4477 22 11 21.5523 11 21V19.9381C7.38128 19.4869 4.51314 16.6187 4.06189 13H3C2.44772 13 2 12.5523 2 12C2 11.4477 2.44772 11 3 11H4.06189C4.51314 7.38128 7.38128 4.51314 11 4.06189V3C11 2.44772 11.4477 2 12 2ZM12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6ZM12 9C13.6569 9 15 10.3431 15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9Z"
+                fill="#1B2838" />
+        </svg>
+    </button>
+
+    <!-- Map Style Toggle Button -->
+    <button class="map-toggle-btn" id="mapToggleBtn" title="Switch map style">
+        <svg id="toggleIcon" width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L2 7l10 5 10-5-10-5z" fill="#1B2838" opacity="0.3" />
+            <path d="M2 17l10 5 10-5" stroke="#1B2838" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            <path d="M2 12l10 5 10-5" stroke="#1B2838" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+        </svg>
+    </button>
+
+    <!-- Map -->
+    <div id="map"></div>
+
+    <!-- Drawer Overlay -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    
+    <!-- Bottom Drawer -->
+    <div class="drawer" id="drawer">
+        <div class="drawer-header">
+            <div class="drawer-handle"></div>
+            <button class="drawer-close" id="drawerClose" aria-label="Close">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7A8599" stroke-width="2"
+                    stroke-linecap="round">
+                    <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <div class="drawer-content" id="drawerContent"></div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+</body>
+
+</html>
