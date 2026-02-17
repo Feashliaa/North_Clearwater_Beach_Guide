@@ -152,5 +152,16 @@
         "description": "Surrounded by water views in the heart of Clearwater Beach. Located right on Clearwater Bay with a marina, our hotel offers modern, comfortable guest rooms close to everything you love. Soak up the sun on one of the nearby sandy beaches or enjoy a dip in our beautiful outdoor pool.",
         "link": "https://www.marriott.com/en-us/hotels/tpach-courtyard-clearwater-beach/overview/",
         "linkLabel": "Visit Website"
+    },
+    {
+        "id": 15,
+        "name": "AC Hotel Clearwater Beach",
+        "category": "hotels",
+        "lat": 27.97169,
+        "lng": -82.82843,
+        "address": "395 Coronado Dr, Clearwater Beach, FL 33767",
+        "description": "Set on Clearwater Beach Island and overlooking the Gulf of Mexico, this laid-back hotel is a 2-minute walk from Clearwater Beach, a mile from Clearwater Marine Aquarium and 7 miles from Highway 19.",
+        "link": "https://www.marriott.com/en-us/hotels/tpaab-ac-hotel-clearwater-beach/overview/",
+        "linkLabel": "Visit Website"
     }
 ]
