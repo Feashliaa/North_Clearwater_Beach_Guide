@@ -214,6 +214,30 @@ const map = L.map('map', {
     layers: [streetLayer]
 });
 
+// Retry failed tiles
+streetLayer.on('tileerror', function (e) {
+    const tile = e.tile;
+    const src = tile.src;
+    setTimeout(() => {
+        tile.src = '';
+        tile.src = src;
+    }, 2000);
+});
+
+satelliteLayer.on('tileerror', function (e) {
+    const tile = e.tile;
+    const src = tile.src;
+    setTimeout(() => {
+        tile.src = '';
+        tile.src = src;
+    }, 2000);
+});
+
+// Force redraw after page fully loads
+window.addEventListener('load', () => {
+    setTimeout(() => map.invalidateSize(), 300);
+});
+
 
 // ══════════════════════════════════════════════
 //  MARKERS
