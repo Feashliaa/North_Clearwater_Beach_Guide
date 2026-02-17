@@ -133,13 +133,13 @@
     },
     {
         "id": 13,
-        "name": "Coco's Crush Bar North Beach - Clearwater",
+        "name": "Coco's Crush Bar Original",
         "category": "nightlife",
-        "lat": 27.9792,
-        "lng": -82.826,
-        "address": "423 Poinsettia Ave, Clearwater Beach, FL 33767",
-        "description": "Chill, oceanfront locale for shrimp, wings & grouper sandwiches, plus orange crush & key lime pie.",
-        "link": "https://cocoscrushbar.com/north",
+        "lat": 27.97294,
+        "lng": -82.82829,
+        "address": "317 Coronado Dr, Clearwater Beach, FL 33767",
+        "description": "Breezy outdoor tiki bar serving bar grub, frozen drinks & beers, with live music & games.",
+        "link": "https://cocoscrushbar.com/og",
         "linkLabel": "Visit Website"
     },
     {
