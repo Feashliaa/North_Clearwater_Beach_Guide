@@ -174,5 +174,16 @@
         "description": "Now open! A beach day doesn't count until you get Flipside Pizza. Stop by for handcrafted pizzas and bold grinders that go big on flavor. We proudly serve local beers, organic wines, and sunny cocktails. Enjoy good times and Clearwater Beach charm at Flipside! Located on the Marina at Courtyard Clearwater Beach",
         "link": "https://eatflipsidepizza.com/",
         "linkLabel": null
+    },
+    {
+        "id": 17,
+        "name": "Soul Mediterranean Cuisine",
+        "category": "dining",
+        "lat": 27.98164,
+        "lng": -82.82618,
+        "address": "486 Poinsettia Ave, Clearwater Beach, FL 33767",
+        "description": "Comfy eatery serving branzino and other Mediterranean fare in a warm setting",
+        "link": "https://soulmediterranean.com/",
+        "linkLabel": null
     }
 ]
