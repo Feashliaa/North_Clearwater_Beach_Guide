@@ -77,17 +77,6 @@
         "linkLabel": null
     },
     {
-        "id": 8,
-        "name": "The Shoppes on Sand Key",
-        "category": "shopping",
-        "lat": 27.963,
-        "lng": -82.823,
-        "address": "1261 Gulf Blvd, Clearwater, FL",
-        "description": "Collection of boutique shops, surf gear, souvenirs, and beach essentials. Pick up a unique keepsake or gear up for the day.",
-        "link": null,
-        "linkLabel": null
-    },
-    {
         "id": 9,
         "name": "Surfside Tap House",
         "category": "nightlife",
