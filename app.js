@@ -268,12 +268,40 @@ createMarkers();
 //  FILTER PILLS
 // ══════════════════════════════════════════════
 
-document.querySelectorAll('.filter-pill').forEach(pill => {
+const filterToggle = document.getElementById('filterToggle');
+const filterOptions = document.getElementById('filterOptions');
+let filtersExpanded = false;
+
+filterToggle.addEventListener('click', () => {
+    if (filtersExpanded) {
+        // Collapse and reset to all
+        filterOptions.classList.remove('expanded');
+        filtersExpanded = false;
+        filterToggle.classList.add('active');
+        activeCategory = 'all';
+        filterMarkers('all');
+        // Remove active from category pills
+        filterOptions.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+    } else {
+        filterOptions.classList.add('expanded');
+        filtersExpanded = true;
+    }
+});
+
+filterOptions.querySelectorAll('.filter-pill').forEach(pill => {
     pill.addEventListener('click', () => {
-        document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+        // Update active states
+        filterOptions.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+        filterToggle.classList.remove('active');
         pill.classList.add('active');
+
+        // Apply filter
         activeCategory = pill.dataset.category;
         filterMarkers(activeCategory);
+
+        // Collapse
+        filterOptions.classList.remove('expanded');
+        filtersExpanded = false;
     });
 });
 

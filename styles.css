@@ -101,15 +101,38 @@
         /* ─ Filter Pills ─ */
         .filter-bar {
             position: fixed;
-            top: 72px;
             top: calc(max(12px, env(safe-area-inset-top)) + 75px);
             left: 0;
             right: 0;
             z-index: 1000;
             padding: 0 16px;
+        }
+
+        .filter-pill.filter-toggle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            padding: 0;
+            background: var(--white);
+            color: var(--night);
+            border: none;
+            box-shadow: 0 2px 12px var(--shadow-heavy);
+            margin-bottom: 8px;
+        }
+
+        .filter-options {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-            gap: 16px;
+            gap: 8px;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.3s ease, opacity 0.2s ease;
+        }
+
+        .filter-options.expanded {
+            max-height: 200px;
+            opacity: 1;
         }
 
         .filter-pill {
@@ -117,7 +140,7 @@
             align-items: center;
             justify-content: center;
             gap: 6px;
-            padding: clamp(6px, 1.2vw, 8px) 0;
+            padding: 10px 20px;
             border-radius: 100px;
             border: 1.5px solid rgba(255, 255, 255, 0.25);
             background: rgba(27, 40, 56, 0.7);
@@ -466,11 +489,6 @@
         }
 
         @media (max-width: 700px) {
-            .filter-pill {
-                padding: 6px 11px;
-                font-size: 12px;
-            }
-
             .top-bar h1 {
                 font-size: 28px;
             }

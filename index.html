@@ -30,25 +30,32 @@
 
     <!-- Category Filters -->
     <div class="filter-bar" id="filterBar">
-        <button class="filter-pill active" data-category="all">All</button>
-        <button class="filter-pill" data-category="dining">
-            <span class="dot" style="background:#E07A5F"></span>Dining
+        <button class="filter-pill filter-toggle active" id="filterToggle" data-category="all">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round">
+                <path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z" />
+            </svg>
         </button>
-        <button class="filter-pill" data-category="attractions">
-            <span class="dot" style="background:#0077B6"></span>Attractions
-        </button>
-        <button class="filter-pill" data-category="nature">
-            <span class="dot" style="background:#57A773"></span>Nature
-        </button>
-        <button class="filter-pill" data-category="shopping">
-            <span class="dot" style="background:#9B5DE5"></span>Shopping
-        </button>
-        <button class="filter-pill" data-category="nightlife">
-            <span class="dot" style="background:#E05299"></span>Nightlife
-        </button>
-        <button class="filter-pill" data-category="services">
-            <span class="dot" style="background:#2EC4B6"></span>Services
-        </button>
+        <div class="filter-options" id="filterOptions">
+            <button class="filter-pill" data-category="dining">
+                <span class="dot" style="background:#E07A5F"></span>Dining
+            </button>
+            <button class="filter-pill" data-category="attractions">
+                <span class="dot" style="background:#0077B6"></span>Attractions
+            </button>
+            <button class="filter-pill" data-category="nature">
+                <span class="dot" style="background:#57A773"></span>Nature
+            </button>
+            <button class="filter-pill" data-category="shopping">
+                <span class="dot" style="background:#9B5DE5"></span>Shopping
+            </button>
+            <button class="filter-pill" data-category="nightlife">
+                <span class="dot" style="background:#E05299"></span>Nightlife
+            </button>
+            <button class="filter-pill" data-category="services">
+                <span class="dot" style="background:#2EC4B6"></span>Services
+            </button>
+        </div>
     </div>
 
     <!-- GPS Button -->
@@ -76,7 +83,7 @@
 
     <!-- Drawer Overlay -->
     <div class="drawer-overlay" id="drawerOverlay"></div>
-    
+
     <!-- Bottom Drawer -->
     <div class="drawer" id="drawer">
         <div class="drawer-header">
