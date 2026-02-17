@@ -2,10 +2,10 @@
 //  CONFIG
 // ══════════════════════════════════════════════
 
-const MAP_CENTER = [27.978, -82.826];
+const MAP_CENTER = [27.985, -82.826];
 const MAP_BOUNDS = L.latLngBounds(
-    [27.955, -82.840],
-    [27.995, -82.810]
+    [27.970, -82.825],
+    [28.000, -82.810]
 );
 
 const CATEGORY_COLORS = {

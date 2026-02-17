@@ -481,6 +481,10 @@
             background: #E05299;
         }
 
+        .custom-marker.cat-hotels {
+            background: var(--sand);
+        }
+
         /* ── Leaflet Overrides ── */
         .leaflet-control-attribution {
             font-size: 9px !important;
