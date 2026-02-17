@@ -14,7 +14,8 @@ const CATEGORY_COLORS = {
     nature: { bg: '#57A773', label: 'Nature' },
     shopping: { bg: '#9B5DE5', label: 'Shopping' },
     nightlife: { bg: '#E05299', label: 'Nightlife' },
-    services: { bg: '#2EC4B6', label: 'Services' }
+    services: { bg: '#2EC4B6', label: 'Services' },
+    hotels: { bg: '#F4A261', label: 'Hotels' }
 };
 
 const CATEGORY_ICONS = {
@@ -37,6 +38,9 @@ const CATEGORY_ICONS = {
     </svg>`,
     services: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M5 17h14v-5l-2-5H7L5 12v5z"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/><path d="M5 12h14"/><path d="M9 7v5"/><path d="M15 7v5"/>
+    </svg>`,
+    hotels: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 21h20"/><path d="M5 21v-8a3 3 0 013-3h8a3 3 0 013 3v8"/><path d="M9 10h.01"/><path d="M15 10h.01"/>
     </svg>`
 };
 
