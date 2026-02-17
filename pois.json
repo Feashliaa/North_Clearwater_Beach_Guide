@@ -12,13 +12,13 @@
     },
     {
         "id": 2,
-        "name": "Palm Pavilion Beachside Grill",
+        "name": "Crabby's Beachside Pavilion",
         "category": "dining",
-        "lat": 27.9812,
-        "lng": -82.8282,
-        "address": "10 Bay Esplanade, Clearwater Beach, FL",
+        "lat": 27.98516,
+        "lng": -82.82775,
+        "address": "10 Bay Esplanade, Clearwater, FL 33767",
         "description": "Casual beachside dining with fresh seafood, craft cocktails, and live entertainment. Right on the sand with panoramic Gulf views.",
-        "link": "https://palmpavilion.com/",
+        "link": "https://crabbysbeachsidepavilion.com/",
         "linkLabel": "Visit Website"
     },
     {
