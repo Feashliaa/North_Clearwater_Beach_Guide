@@ -4,8 +4,8 @@
 
 const MAP_CENTER = [27.98, -82.82];
 const MAP_BOUNDS = L.latLngBounds(
-    [27.9675, -82.850],
-    [28.5, -82.80]
+    [27.955, -82.850],   // SW 
+    [28.030, -82.80]     // NE 
 );
 
 const CATEGORY_COLORS = {
@@ -89,8 +89,8 @@ const map = L.map('map', {
     zoom: 15,
     minZoom: 14,
     maxZoom: 18,
-    maxBounds: MAP_BOUNDS.pad(0.1),
-    maxBoundsViscosity: 0.9,
+    maxBounds: MAP_BOUNDS,
+    maxBoundsViscosity: 1.0,
     zoomControl: false,
     attributionControl: true,
     layers: [streetLayer]
