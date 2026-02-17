@@ -121,17 +121,6 @@
         "linkLabel": null
     },
     {
-        "id": 12,
-        "name": "Captain's Pizza",
-        "category": "dining",
-        "lat": 27.98,
-        "lng": -82.825,
-        "address": "487 Mandalay Ave, Clearwater Beach, FL",
-        "description": "No-frills New York - style pizza by the slice. Exactly what you want after a long day in the sun. Cash and card accepted.",
-        "link": null,
-        "linkLabel": null
-    },
-    {
         "id": 13,
         "name": "Coco's Crush Bar Original",
         "category": "nightlife",
