@@ -141,5 +141,16 @@
         "description": "Chill, oceanfront locale for shrimp, wings & grouper sandwiches, plus orange crush & key lime pie.",
         "link": "https://cocoscrushbar.com/north",
         "linkLabel": "Visit Website"
+    },
+    {
+        "id": 14,
+        "name": "Courtyard by Marriott Clearwater Beach",
+        "category": "hotels",
+        "lat": 27.9802,
+        "lng": -82.8254,
+        "address": "455 E Shore Dr, Clearwater Beach, FL 33767",
+        "description": "Surrounded by water views in the heart of Clearwater Beach. Located right on Clearwater Bay with a marina, our hotel offers modern, comfortable guest rooms close to everything you love. Soak up the sun on one of the nearby sandy beaches or enjoy a dip in our beautiful outdoor pool.",
+        "link": "https://www.marriott.com/en-us/hotels/tpach-courtyard-clearwater-beach/overview/",
+        "linkLabel": "Visit Website"
     }
 ]
