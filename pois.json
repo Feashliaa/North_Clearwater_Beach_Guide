@@ -218,5 +218,16 @@
         "description": "Island park with white sand beaches plus swimming, boating, fishing & picnic facilities.",
         "link": "https://www.floridastateparks.org/parks-and-trails/caladesi-island-state-park",
         "linkLabel": "Visit Website"
+    },
+    {
+        "id": 23,
+        "name": "Sand Key Park",
+        "category": "dining",
+        "lat": 28.95911,
+        "lng": -82.82771,
+        "address": "1060 Gulf Boulevard Clearwater, Florida 33767",
+        "description": "Expansive white-sand beach offering plenty of room for picnics, surfing & other outdoor activities.",
+        "link": "https://pinellas.gov/parks/sand-key-park",
+        "linkLabel": "Visit Website"
     }
 ]
