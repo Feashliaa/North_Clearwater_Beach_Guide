@@ -196,5 +196,16 @@
         "description": "Offering views of the Gulf of Mexico, this informal hotel is a 4-minute walk from Clearwater Beach, a mile from SR-60 and 2 miles from Clearwater Marine Aquarium.",
         "link": "https://www.marriott.com/en-us/hotels/tpafw-fairfield-inn-and-suites-clearwater-beach/overview/?scid=f2ae0541-1279-4f24-b197-a979c79310b0",
         "linkLabel": "Visit Website"
+    },
+    {
+        "id": 21,
+        "name": "Little Toot Dolphin Adventure",
+        "category": "services",
+        "lat": 27.97668,
+        "lng": -82.82679,
+        "address": "25 Causeway Blvd #12, Clearwater Beach, FL 33767",
+        "description": "Dolphins love the Little Toot and we offer our passengers a unique and memorable experience at affordable prices. Sightseeing tours available on the Original Little Toot and the Little Toot II.\n\nLocated at 25 Causeway Blvd. Slip 12\nClearwater Beach",
+        "link": "https://www.littletoot.us/",
+        "linkLabel": "Visit Website"
     }
 ]
