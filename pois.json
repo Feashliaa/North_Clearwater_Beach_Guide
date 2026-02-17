@@ -185,5 +185,16 @@
         "description": "Comfy eatery serving branzino and other Mediterranean fare in a warm setting",
         "link": "https://soulmediterranean.com/",
         "linkLabel": null
+    },
+    {
+        "id": 18,
+        "name": "Clear Sky Cafe",
+        "category": "dining",
+        "lat": 27.98202,
+        "lng": -82.82731,
+        "address": "490 Mandalay Ave, Clearwater, FL 33767",
+        "description": "Located near the beach, this no-frills cafe offers a seafood-focused menu & live music.",
+        "link": "https://clearskyrestaurants.com/cafe/",
+        "linkLabel": "Visit Website"
     }
 ]
