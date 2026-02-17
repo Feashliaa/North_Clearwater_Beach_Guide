@@ -229,5 +229,16 @@
         "description": "Expansive white-sand beach offering plenty of room for picnics, surfing & other outdoor activities.",
         "link": "https://pinellas.gov/parks/sand-key-park",
         "linkLabel": "Visit Website"
+    },
+    {
+        "id": 24,
+        "name": "Clearwater Ferry",
+        "category": "services",
+        "lat": 27.96596,
+        "lng": -82.80415,
+        "address": "14 Drew St, Clearwater, FL 33756",
+        "description": "Our route services Clearwater and Dunedin with stops at Downtown Clearwater, Clearwater Beach Marina (near Pier 60) and Dunedin Marina (near breweries, shops and restaurants). While we don’t require reservations, we encourage them to ensure you have a seat on board. Walk-ons are welcome if capacity permits.",
+        "link": "https://www.clearwaterferry.com/",
+        "linkLabel": "Visit Website"
     }
 ]
