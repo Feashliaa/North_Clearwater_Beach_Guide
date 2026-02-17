@@ -1,0 +1,134 @@
+[
+    {
+        "id": 1,
+        "name": "Frenchy's Rockaway Grill",
+        "category": "dining",
+        "lat": 27.9785,
+        "lng": -82.8272,
+        "address": "7 Rockaway St, Clearwater Beach, FL",
+        "description": "Iconic beachfront spot famous for their grouper sandwich and live music. Grab a seat on the deck for sunset views over the Gulf.",
+        "link": "https://www.frenchysonline.com/",
+        "linkLabel": "Visit Website"
+    },
+    {
+        "id": 2,
+        "name": "Palm Pavilion Beachside Grill",
+        "category": "dining",
+        "lat": 27.9812,
+        "lng": -82.8282,
+        "address": "10 Bay Esplanade, Clearwater Beach, FL",
+        "description": "Casual beachside dining with fresh seafood, craft cocktails, and live entertainment. Right on the sand with panoramic Gulf views.",
+        "link": "https://palmpavilion.com/",
+        "linkLabel": "Visit Website"
+    },
+    {
+        "id": 3,
+        "name": "Clearwater Marine Aquarium",
+        "category": "attractions",
+        "lat": 27.9776,
+        "lng": -82.8186,
+        "address": "249 Windward Passage, Clearwater, FL",
+        "description": "Home of Winter the dolphin from Dolphin Tale. A rescue-focused aquarium with interactive exhibits, animal encounters, and boat tours.",
+        "link": "https://www.cmaquarium.org/",
+        "linkLabel": "Get Tickets"
+    },
+    {
+        "id": 4,
+        "name": "Pier 60",
+        "category": "attractions",
+        "lat": 27.974,
+        "lng": -82.828,
+        "address": "Pier 60 Park, Clearwater Beach, FL",
+        "description": "Nightly sunset celebration with street performers, artisan vendors, and live music. The pier itself is great for fishing and dolphin spotting.",
+        "link": "https://sunsetsatpier60.com/",
+        "linkLabel": "Learn More"
+    },
+    {
+        "id": 5,
+        "name": "North Beach Area",
+        "category": "nature",
+        "lat": 27.988,
+        "lng": -82.829,
+        "address": "North Clearwater Beach, FL",
+        "description": "The quieter, less crowded end of Clearwater Beach. Perfect for shelling, peaceful walks, and nesting sea turtle season (May - October).",
+        "link": null,
+        "linkLabel": null
+    },
+    {
+        "id": 6,
+        "name": "Clearwater Beach Marina",
+        "category": "attractions",
+        "lat": 27.9752,
+        "lng": -82.823,
+        "address": "25 Causeway Blvd, Clearwater Beach, FL",
+        "description": "Hub for fishing charters, dolphin cruises, parasailing, and jet ski rentals. Book a sunset cruise for an unforgettable evening on the water.",
+        "link": null,
+        "linkLabel": null
+    },
+    {
+        "id": 7,
+        "name": "Beach Walk",
+        "category": "nature",
+        "lat": 27.976,
+        "lng": -82.827,
+        "address": "S Gulfview Blvd, Clearwater Beach, FL",
+        "description": "Paved beachfront promenade stretching along the shoreline. Perfect for a morning jog, evening stroll, or people-watching. Connects major beach areas.",
+        "link": null,
+        "linkLabel": null
+    },
+    {
+        "id": 8,
+        "name": "The Shoppes on Sand Key",
+        "category": "shopping",
+        "lat": 27.963,
+        "lng": -82.823,
+        "address": "1261 Gulf Blvd, Clearwater, FL",
+        "description": "Collection of boutique shops, surf gear, souvenirs, and beach essentials. Pick up a unique keepsake or gear up for the day.",
+        "link": null,
+        "linkLabel": null
+    },
+    {
+        "id": 9,
+        "name": "Surfside Tap House",
+        "category": "nightlife",
+        "lat": 27.979,
+        "lng": -82.8265,
+        "address": "14 Rockaway St, Clearwater Beach, FL",
+        "description": "Chill craft beer bar steps from the beach. Great selection of local brews, live music on weekends, and a laid-back island vibe.",
+        "link": null,
+        "linkLabel": null
+    },
+    {
+        "id": 10,
+        "name": "Jeep Pickup - Main Station",
+        "category": "services",
+        "lat": 27.977,
+        "lng": -82.824,
+        "address": "Clearwater Beach Main Lot, FL",
+        "description": "Pick up your complimentary electric Jeep here! Valid ID required. Vehicles must be returned by 8 PM. First come, first served.",
+        "link": null,
+        "linkLabel": null
+    },
+    {
+        "id": 11,
+        "name": "Jeep Pickup - North Station",
+        "category": "services",
+        "lat": 27.986,
+        "lng": -82.8275,
+        "address": "North Beach Parking Area, FL",
+        "description": "Secondary electric Jeep pickup location at the north end. Convenient if you're starting your day at the quieter beaches.",
+        "link": null,
+        "linkLabel": null
+    },
+    {
+        "id": 12,
+        "name": "Captain's Pizza",
+        "category": "dining",
+        "lat": 27.98,
+        "lng": -82.825,
+        "address": "487 Mandalay Ave, Clearwater Beach, FL",
+        "description": "No-frills New York - style pizza by the slice. Exactly what you want after a long day in the sun. Cash and card accepted.",
+        "link": null,
+        "linkLabel": null
+    }
+]

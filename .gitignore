@@ -1,1 +1,9 @@
+.env
+
+# QR code generation script
 script.py
+
+# admin files
+admin.html
+admin.js
+admin.css
