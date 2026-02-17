@@ -130,5 +130,16 @@
         "description": "No-frills New York - style pizza by the slice. Exactly what you want after a long day in the sun. Cash and card accepted.",
         "link": null,
         "linkLabel": null
+    },
+    {
+        "id": 13,
+        "name": "Coco's Crush Bar North Beach - Clearwater",
+        "category": "dining",
+        "lat": 27.9792184717724,
+        "lng": -82.82604003307539,
+        "address": "423 Poinsettia Ave, Clearwater Beach, FL 33767",
+        "description": "Chill, oceanfront locale for shrimp, wings & grouper sandwiches, plus orange crush & key lime pie.",
+        "link": "https://cocoscrushbar.com/north",
+        "linkLabel": "Visit Website"
     }
 ]
