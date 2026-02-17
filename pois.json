@@ -34,13 +34,13 @@
     },
     {
         "id": 4,
-        "name": "Pier 60",
+        "name": "Pier 60 Clearwater",
         "category": "attractions",
-        "lat": 27.974,
-        "lng": -82.828,
-        "address": "Pier 60 Park, Clearwater Beach, FL",
+        "lat": 27.97722,
+        "lng": -82.82891,
+        "address": "1 Causeway Blvd, Clearwater Beach, FL 33767",
         "description": "Nightly sunset celebration with street performers, artisan vendors, and live music. The pier itself is great for fishing and dolphin spotting.",
-        "link": "https://sunsetsatpier60.com/",
+        "link": "https://www.visitstpeteclearwater.com/profile/pier-60-clearwater-beach/139755",
         "linkLabel": "Learn More"
     },
     {
