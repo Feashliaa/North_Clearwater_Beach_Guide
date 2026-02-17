@@ -25,9 +25,9 @@
         "id": 3,
         "name": "Clearwater Marine Aquarium",
         "category": "attractions",
-        "lat": 27.9776,
-        "lng": -82.8186,
-        "address": "249 Windward Passage, Clearwater, FL",
+        "lat": 27.97697,
+        "lng": -82.81771,
+        "address": "249 Windward Passage, Clearwater, FL 33767",
         "description": "Home of Winter the dolphin from Dolphin Tale. A rescue-focused aquarium with interactive exhibits, animal encounters, and boat tours.",
         "link": "https://www.cmaquarium.org/",
         "linkLabel": "Get Tickets"
