@@ -2,10 +2,10 @@
 //  CONFIG
 // ══════════════════════════════════════════════
 
-const MAP_CENTER = [27.98, -82.82];
+const MAP_CENTER = [27.990, -82.825];
 const MAP_BOUNDS = L.latLngBounds(
-    [27.955, -82.850],   // SW 
-    [28.030, -82.80]     // NE 
+    [27.940, -82.845],   // SW
+    [28.045, -82.795]    // NE
 );
 
 const CATEGORY_COLORS = {
@@ -86,9 +86,9 @@ const labelsLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_only_lab
 
 const map = L.map('map', {
     center: MAP_CENTER,
-    zoom: 15,
-    minZoom: 14,
-    maxZoom: 18,
+    zoom: 14,
+    minZoom: 12.5,
+    maxZoom: 20,
     maxBounds: MAP_BOUNDS,
     maxBoundsViscosity: 1.0,
     zoomControl: false,
@@ -312,6 +312,12 @@ function initGps() {
         watchId = navigator.geolocation.watchPosition(
             ({ coords }) => {
                 const latlng = [coords.latitude, coords.longitude];
+
+                if (!MAP_BOUNDS.contains(latlng)) {
+                    showToast('You are outside the map area. Tracking stopped.');
+                    stopTracking();
+                    return;
+                }
 
                 if (locationMarker) {
                     locationMarker.setLatLng(latlng);
