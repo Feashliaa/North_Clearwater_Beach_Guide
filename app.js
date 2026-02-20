@@ -7,6 +7,7 @@ const MAP_BOUNDS = L.latLngBounds(
     [27.940, -82.845],   // SW
     [28.045, -82.795]    // NE
 );
+const minZoom = window.innerWidth <= 400 ? 13 : 14;
 
 const CATEGORY_COLORS = {
     dining: { bg: '#E07A5F', label: 'Dining' },
@@ -70,12 +71,12 @@ let isListView = false;
 const streetLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
     subdomains: 'abcd',
-    maxZoom: 19
+    maxZoom: 19,
 });
 
 const satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
     attribution: '&copy; Esri',
-    maxZoom: 19
+    maxZoom: 19,
 });
 
 const labelsLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png', {
@@ -87,9 +88,9 @@ const labelsLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_only_lab
 
 const map = L.map('map', {
     center: MAP_CENTER,
-    zoom: 14,
-    minZoom: 12.5,
-    maxZoom: 20,
+    zoom: minZoom,
+    minZoom: minZoom,
+    maxZoom: 19,
     maxBounds: MAP_BOUNDS,
     maxBoundsViscosity: 1.0,
     zoomControl: false,
@@ -392,20 +393,16 @@ function initGps() {
             showToast('Geolocation is not supported by your browser.');
             return;
         }
-
         gpsBtn.classList.add('tracking');
         isTracking = true;
-
         watchId = navigator.geolocation.watchPosition(
             ({ coords }) => {
                 const latlng = [coords.latitude, coords.longitude];
-
                 if (!MAP_BOUNDS.contains(latlng)) {
                     showToast('You are outside the map area. Tracking stopped.');
                     stopTracking();
                     return;
                 }
-
                 if (locationMarker) {
                     locationMarker.setLatLng(latlng);
                     locationCircle.setLatLng(latlng).setRadius(coords.accuracy);
@@ -414,13 +411,11 @@ function initGps() {
                         radius: 8, fillColor: '#4285F4', fillOpacity: 1,
                         color: '#FFFFFF', weight: 3
                     }).addTo(map);
-
                     locationCircle = L.circle(latlng, {
                         radius: coords.accuracy, fillColor: '#4285F4',
                         fillOpacity: 0.1, color: '#4285F4', weight: 1
                     }).addTo(map);
                 }
-
                 map.setView(latlng, 16);
             },
             () => {
@@ -432,6 +427,9 @@ function initGps() {
     }
 
     gpsBtn.addEventListener('click', () => isTracking ? stopTracking() : startTracking());
+
+    // Auto-start on page load
+    startTracking();
 }
 
 
