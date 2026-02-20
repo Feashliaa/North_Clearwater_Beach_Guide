@@ -60,6 +60,7 @@ let locationMarker = null;
 let locationCircle = null;
 let touchStartY = 0;
 let toastTimer = null;
+let isListView = false;
 
 
 // ══════════════════════════════════════════════
@@ -120,6 +121,7 @@ async function loadPois() {
         POIS = [];
     }
     createMarkers();
+    renderCards();
 }
 
 
@@ -164,6 +166,99 @@ function filterMarkers(category) {
             }, 200);
         }
     });
+
+    // Also re-render cards if in list mode
+    renderCards();
+}
+
+
+// ══════════════════════════════════════════════
+//  LIST VIEW — CARDS
+// ══════════════════════════════════════════════
+
+function renderCards() {
+    const grid = document.getElementById('listGrid');
+    const countEl = document.getElementById('listCount');
+    if (!grid) return;
+
+    const filtered = activeCategory === 'all'
+        ? POIS
+        : POIS.filter(p => p.category === activeCategory);
+
+    countEl.textContent = `${filtered.length} place${filtered.length !== 1 ? 's' : ''}${activeCategory !== 'all' ? ` · ${CATEGORY_COLORS[activeCategory].label}` : ''}`;
+
+    grid.innerHTML = filtered.map((poi, i) => {
+        const cat = CATEGORY_COLORS[poi.category];
+        const icon = CATEGORY_ICONS[poi.category];
+        const linkBtn = poi.link
+            ? `<span class="poi-card-cta">${poi.linkLabel || 'Learn More'} →</span>`
+            : `<span></span>`;
+
+        return `
+            <div class="poi-card" style="animation-delay:${i * 30}ms" data-poi-index="${POIS.indexOf(poi)}">
+                <div class="poi-card-accent" style="background:${cat.bg}"></div>
+                <div class="poi-card-body">
+                    <div class="poi-card-header">
+                        <div class="poi-card-icon" style="background:${cat.bg}20">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="color:${cat.bg}" stroke="${cat.bg}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                ${icon.replace(/<svg[^>]*>|<\/svg>/g, '')}
+                            </svg>
+                        </div>
+                        <div class="poi-card-meta">
+                            <div class="poi-card-category" style="color:${cat.bg}">${cat.label}</div>
+                            <div class="poi-card-name" title="${poi.name}">${poi.name}</div>
+                        </div>
+                    </div>
+                    <div class="poi-card-address">${poi.address}</div>
+                    <div class="poi-card-desc">${poi.description}</div>
+                    <div class="poi-card-footer">
+                        ${linkBtn}
+                        <button class="poi-card-dir" onclick="event.stopPropagation(); openDirections(${poi.lat}, ${poi.lng})">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+                                <path d="M3.27 12.77L12 21.5l8.73-8.73a2.5 2.5 0 000-3.54l-5.19-5.19a2.5 2.5 0 00-3.54 0L3.27 12.77z"
+                                    stroke="#7A8599" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Directions
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    // Attach click handlers to cards
+    grid.querySelectorAll('.poi-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const idx = parseInt(card.dataset.poiIndex, 10);
+            openDrawer(POIS[idx]);
+        });
+    });
+}
+
+// ══════════════════════════════════════════════
+//  VIEW TOGGLE (MAP ↔ LIST)
+// ══════════════════════════════════════════════
+
+function initViewToggle() {
+    const btn = document.getElementById('viewToggleBtn');
+    const label = btn.querySelector('.view-toggle-label');
+
+    btn.addEventListener('click', () => {
+        isListView = !isListView;
+        document.body.classList.toggle('list-mode', isListView);
+        document.getElementById('listPanel').setAttribute('aria-hidden', String(!isListView));
+
+        if (isListView) {
+            label.textContent = 'Map';
+            renderCards();
+            // Scroll list back to top on each open
+            document.getElementById('listPanel').scrollTop = 0;
+        } else {
+            label.textContent = 'List';
+            // Invalidate map size in case viewport changed
+            setTimeout(() => map.invalidateSize(), 350);
+        }
+    });
 }
 
 
@@ -172,32 +267,24 @@ function filterMarkers(category) {
 // ══════════════════════════════════════════════
 
 function initFilters() {
-    const filterToggle = document.getElementById('filterToggle');
     const filterOptions = document.getElementById('filterOptions');
-
-    filterToggle.addEventListener('click', () => {
-        if (filtersExpanded) {
-            filterOptions.classList.remove('expanded');
-            filtersExpanded = false;
-            filterToggle.classList.add('active');
-            activeCategory = 'all';
-            filterMarkers('all');
-            filterOptions.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
-        } else {
-            filterOptions.classList.add('expanded');
-            filtersExpanded = true;
-        }
-    });
 
     filterOptions.querySelectorAll('.filter-pill').forEach(pill => {
         pill.addEventListener('click', () => {
+            const isActive = pill.classList.contains('active');
+
+            // Deselect all
             filterOptions.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
-            filterToggle.classList.remove('active');
-            pill.classList.add('active');
-            activeCategory = pill.dataset.category;
+
+            if (isActive) {
+                // Tapping the active pill again resets to "all"
+                activeCategory = 'all';
+            } else {
+                pill.classList.add('active');
+                activeCategory = pill.dataset.category;
+            }
+
             filterMarkers(activeCategory);
-            filterOptions.classList.remove('expanded');
-            filtersExpanded = false;
         });
     });
 }
@@ -243,7 +330,7 @@ function initDrawer() {
 
         drawer.classList.add('open');
         drawerOverlay.classList.add('visible');
-        document.body.classList.add('drawer-open');
+        if (!isListView) document.body.classList.add('drawer-open');
     };
 
     window.closeDrawer = function () {
@@ -394,6 +481,7 @@ async function initApp() {
     initDrawer();
     initGps();
     initMapToggle();
+    initViewToggle();
     await loadPois();
 
     window.addEventListener('load', () => {
