@@ -182,21 +182,44 @@ function renderCards() {
     const countEl = document.getElementById('listCount');
     if (!grid) return;
 
-    const filtered = activeCategory === 'all'
-        ? POIS
-        : POIS.filter(p => p.category === activeCategory);
+    let userLatLng = null;
+    try {
+        const stored = localStorage.getItem('lastLocation');
+        if (stored) {
+            const { lat, lng } = JSON.parse(stored);
+            userLatLng = L.latLng(lat, lng);
+        }
+    } catch (err) {
+        console.error('Error parsing user location:', err);
+    }
+
+    // Filter, attach distance, sort
+    let filtered = (activeCategory === 'all' ? POIS : POIS.filter(p => p.category === activeCategory))
+        .map((poi, originalIndex) => ({
+            ...poi,
+            _poiIndex: POIS.indexOf(poi), // capture before spread
+            distance: userLatLng ? userLatLng.distanceTo(L.latLng(poi.lat, poi.lng)) * 0.000621371 : null
+        }));
+
+    if (userLatLng) {
+        filtered.sort((a, b) => a.distance - b.distance);
+    }
 
     countEl.textContent = `${filtered.length} place${filtered.length !== 1 ? 's' : ''}${activeCategory !== 'all' ? ` · ${CATEGORY_COLORS[activeCategory].label}` : ''}`;
 
     grid.innerHTML = filtered.map((poi, i) => {
         const cat = CATEGORY_COLORS[poi.category];
         const icon = CATEGORY_ICONS[poi.category];
+        const distanceLabel = poi.distance !== null
+            ? `<span class="poi-card-distance">${poi.distance.toFixed(1)} mi away</span>`
+            : '';
+
         const linkBtn = poi.link
             ? `<span class="poi-card-cta">${poi.linkLabel || 'Learn More'} →</span>`
             : `<span></span>`;
 
         return `
-            <div class="poi-card" style="animation-delay:${i * 30}ms" data-poi-index="${POIS.indexOf(poi)}">
+            <div class="poi-card" style="animation-delay:${i * 30}ms" data-poi-index="${poi._poiIndex}"">
                 <div class="poi-card-accent" style="background:${cat.bg}"></div>
                 <div class="poi-card-body">
                     <div class="poi-card-header">
@@ -213,6 +236,7 @@ function renderCards() {
                     <div class="poi-card-address">${poi.address}</div>
                     <div class="poi-card-desc">${poi.description}</div>
                     <div class="poi-card-footer">
+                        ${distanceLabel}
                         ${linkBtn}
                         <button class="poi-card-dir" onclick="event.stopPropagation(); openDirections(${poi.lat}, ${poi.lng})">
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
@@ -303,15 +327,28 @@ function initDrawer() {
     window.openDrawer = function (poi) {
         const cat = CATEGORY_COLORS[poi.category];
 
+        let distanceLabel = '';
+        try {
+            const stored = localStorage.getItem('lastLocation');
+            if (stored) {
+                const { lat, lng } = JSON.parse(stored);
+                const distance = L.latLng(lat, lng).distanceTo(L.latLng(poi.lat, poi.lng)) * 0.000621371;
+                distanceLabel = `<p class="drawer-distance">${distance.toFixed(1)} mi away</p>`;
+            }
+
+        } catch (e) {
+            console.error('Error calculating distance for drawer:', e);
+        }
+
         let actionsHTML = '';
         if (poi.link) {
             actionsHTML += `
-                <a href="${poi.link}" target="_blank" rel="noopener" class="drawer-btn primary">
+                <a href="${poi.link}" target="_blank" rel="noopener" class="drawer-btn primary" title="Visit ${poi.name}">
                     ${poi.linkLabel || 'Learn More'} →
                 </a>`;
         }
         actionsHTML += `
-            <button class="drawer-btn secondary" onclick="openDirections(${poi.lat}, ${poi.lng})">
+            <button class="drawer-btn secondary" onclick="openDirections(${poi.lat}, ${poi.lng})" title="Get directions to ${poi.name}">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                     <path d="M3.27 12.77L12 21.5l8.73-8.73a2.5 2.5 0 000-3.54l-5.19-5.19a2.5 2.5 0 00-3.54 0L3.27 12.77z"
                           stroke="#1B2838" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -324,7 +361,10 @@ function initDrawer() {
                 <span class="dot" style="background:${cat.bg}"></span>${cat.label}
             </div>
             <h2 class="drawer-title">${poi.name}</h2>
-            <p class="drawer-address">${poi.address}</p>
+            <div class="drawer-address-row">
+                <p class="drawer-address">${poi.address}</p>
+                ${distanceLabel}
+            </div>
             <p class="drawer-desc">${poi.description}</p>
             <div class="drawer-actions">${actionsHTML}</div>
         `;
@@ -365,10 +405,18 @@ window.openDirections = function (lat, lng) {
 function showToast(message, duration = 3000) {
     const toast = document.getElementById('toast');
     if (!toast) return;
+
     clearTimeout(toastTimer);
-    toast.textContent = message;
+
+    let formatted = message.replace(/\.\s+/g, '.<br>');
+
+    toast.innerHTML = formatted;
     toast.classList.add('visible');
-    toastTimer = setTimeout(() => toast.classList.remove('visible'), duration);
+
+    toastTimer = setTimeout(() => {
+        toast.classList.remove('visible');
+        toast.textContent = ''; // reset safely
+    }, duration);
 }
 
 
@@ -398,8 +446,15 @@ function initGps() {
         watchId = navigator.geolocation.watchPosition(
             ({ coords }) => {
                 const latlng = [coords.latitude, coords.longitude];
+                // store in localStorage for potential future use (e.g. centering map on reload)
+                localStorage.setItem('lastLocation', JSON.stringify({ lat: coords.latitude, lng: coords.longitude }));
+
                 if (!MAP_BOUNDS.contains(latlng)) {
-                    showToast('You are outside the map area. Tracking stopped.');
+                    showToast('You are outside the map area. Tracking Stopped.');
+
+                    // drop lastLocation since it's out of bounds, so we don't try to recenter there on reload
+                    localStorage.removeItem('lastLocation');
+
                     stopTracking();
                     return;
                 }
@@ -488,3 +543,11 @@ async function initApp() {
 }
 
 initApp();
+
+// ══════════════════════════════════════════════
+//  Event Handlers for elements above map
+// ══════════════════════════════════════════════
+document.querySelectorAll('.filter-pill').forEach(pill => {
+    pill.addEventListener('mouseenter', () => pill.classList.add('hovered'));
+    pill.addEventListener('mouseleave', () => pill.classList.remove('hovered'));
+});
