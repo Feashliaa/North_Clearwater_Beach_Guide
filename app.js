@@ -1,12 +1,6 @@
-// ══════════════════════════════════════════════
+// ==============================================
 //  CONFIG
-// ══════════════════════════════════════════════
-
-const MAP_CENTER = [27.990, -82.825];
-const MAP_BOUNDS = L.latLngBounds(
-    [27.940, -82.845],   // SW
-    [28.045, -82.795]    // NE
-);
+// ==============================================
 const minZoom = window.innerWidth <= 400 ? 13 : 14;
 
 const CATEGORY_COLORS = {
@@ -46,11 +40,12 @@ const CATEGORY_ICONS = {
 };
 
 
-// ══════════════════════════════════════════════
+// ==============================================
 //  STATE
-// ══════════════════════════════════════════════
+// ==============================================
 
 let POIS = [];
+let map = null;
 let markers = [];
 let activeCategory = 'all';
 let filtersExpanded = false;
@@ -64,9 +59,9 @@ let toastTimer = null;
 let isListView = false;
 
 
-// ══════════════════════════════════════════════
+// ==============================================
 //  MAP INIT & TILE LAYERS
-// ══════════════════════════════════════════════
+// ==============================================
 
 const streetLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
@@ -86,17 +81,19 @@ const labelsLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_only_lab
     className: 'satellite-labels'
 });
 
-const map = L.map('map', {
-    center: MAP_CENTER,
-    zoom: minZoom,
-    minZoom: minZoom,
-    maxZoom: 19,
-    maxBounds: MAP_BOUNDS,
-    maxBoundsViscosity: 1.0,
-    zoomControl: false,
-    attributionControl: true,
-    layers: [streetLayer]
-});
+async function createMap(center, bounds) {
+    map = L.map('map', {
+        center: center,
+        zoom: minZoom,
+        minZoom: minZoom,
+        maxZoom: 19,
+        maxBounds: bounds,
+        maxBoundsViscosity: 1.0,
+        zoomControl: false,
+        attributionControl: true,
+        layers: [streetLayer]
+    });
+}
 
 function initTileErrorHandling() {
     [streetLayer, satelliteLayer].forEach(layer => {
@@ -108,10 +105,18 @@ function initTileErrorHandling() {
     });
 }
 
+// ==============================================
+// CONFIG LOADING
+// ==============================================
+async function loadConfig() {
+    const res = await fetch('config.json');
+    const cfg = await res.json();
+    return cfg;
+}
 
-// ══════════════════════════════════════════════
+// ==============================================
 //  POI LOADING
-// ══════════════════════════════════════════════
+// ==============================================
 
 async function loadPois() {
     try {
@@ -127,9 +132,9 @@ async function loadPois() {
 }
 
 
-// ══════════════════════════════════════════════
+// ==============================================
 //  MARKERS
-// ══════════════════════════════════════════════
+// ==============================================
 
 function createMarkers() {
     markers.forEach(m => map.removeLayer(m.leafletMarker));
@@ -174,9 +179,9 @@ function filterMarkers(category) {
     buildLegend(category);
 }
 
-// ══════════════════════════════════════════════
+// ==============================================
 //  LEGEND PANEL BUILD
-// ══════════════════════════════════════════════
+// ==============================================
 
 const CAT_ORDER = ['dining', 'attractions', 'nature', 'nightlife', 'shopping', 'hotels', 'services'];
 
@@ -231,9 +236,9 @@ function buildLegend(filterCat = 'all') {
 }
 
 
-// ══════════════════════════════════════════════
+// ==============================================
 //  LIST VIEW — CARDS
-// ══════════════════════════════════════════════
+// ==============================================
 
 function renderCards() {
     const grid = document.getElementById('listGrid');
@@ -318,9 +323,9 @@ function renderCards() {
     });
 }
 
-// ══════════════════════════════════════════════
+// ==============================================
 //  VIEW TOGGLE (MAP ↔ LIST)
-// ══════════════════════════════════════════════
+// ==============================================
 
 function initViewToggle() {
     const btn = document.getElementById('viewToggleBtn');
@@ -373,9 +378,9 @@ function initFilters() {
 }
 
 
-// ══════════════════════════════════════════════
+// ==============================================
 //  BOTTOM DRAWER
-// ══════════════════════════════════════════════
+// ==============================================
 
 function initDrawer() {
     const drawer = document.getElementById('drawer');
@@ -447,18 +452,18 @@ function initDrawer() {
 }
 
 
-// ══════════════════════════════════════════════
+// ==============================================
 //  DIRECTIONS
-// ══════════════════════════════════════════════
+// ==============================================
 
 window.openDirections = function (lat, lng) {
     window.open(`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=driving`, '_blank');
 };
 
 
-// ══════════════════════════════════════════════
+// ==============================================
 //  TOAST
-// ══════════════════════════════════════════════
+// ==============================================
 
 function showToast(message, duration = 3000) {
     const toast = document.getElementById('toast');
@@ -478,11 +483,11 @@ function showToast(message, duration = 3000) {
 }
 
 
-// ══════════════════════════════════════════════
+// ==============================================
 //  GPS TRACKING
-// ══════════════════════════════════════════════
+// ==============================================
 
-function initGps() {
+function initGps(bounds) {
     const gpsBtn = document.getElementById('gpsBtn');
 
     function stopTracking() {
@@ -507,7 +512,7 @@ function initGps() {
                 // store in localStorage for potential future use (e.g. centering map on reload)
                 localStorage.setItem('lastLocation', JSON.stringify({ lat: coords.latitude, lng: coords.longitude }));
 
-                if (!MAP_BOUNDS.contains(latlng)) {
+                if (!bounds.contains(latlng)) {
                     showToast('You are outside the map area. Tracking Stopped.');
 
                     // drop lastLocation since it's out of bounds, so we don't try to recenter there on reload
@@ -546,9 +551,9 @@ function initGps() {
 }
 
 
-// ══════════════════════════════════════════════
+// ==============================================
 //  MAP STYLE TOGGLE
-// ══════════════════════════════════════════════
+// ==============================================
 
 const layersIcon = `<path d="M12 2L2 7l10 5 10-5-10-5z" fill="#1B2838" opacity="0.3"/>
     <path d="M2 17l10 5 10-5" stroke="#1B2838" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -582,15 +587,26 @@ function initMapToggle() {
 }
 
 
-// ══════════════════════════════════════════════
+// ==============================================
 //  INIT
-// ══════════════════════════════════════════════
+// ==============================================
 
 async function initApp() {
+    const config = await loadConfig();
+    const MAP_CENTER = config.center;
+    const MAP_BOUNDS = L.latLngBounds(
+        config.bounds.sw,
+        config.bounds.ne
+    );
+
+    document.querySelector('.title').textContent = config.title;
+    document.querySelector('.subtitle').textContent = config.subtitle;
+
+    createMap(MAP_CENTER, MAP_BOUNDS);
     initTileErrorHandling();
     initFilters();
     initDrawer();
-    initGps();
+    initGps(MAP_BOUNDS);
     initMapToggle();
     initViewToggle();
     await loadPois();
@@ -602,9 +618,9 @@ async function initApp() {
 
 initApp();
 
-// ══════════════════════════════════════════════
+// ==============================================
 //  Event Handlers for elements above map
-// ══════════════════════════════════════════════
+// ==============================================
 document.querySelectorAll('.filter-pill').forEach(pill => {
     pill.addEventListener('mouseenter', () => pill.classList.add('hovered'));
     pill.addEventListener('mouseleave', () => pill.classList.remove('hovered'));

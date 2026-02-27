@@ -1,0 +1,19 @@
+{
+    "title": "North Clearwater Beach",
+    "subtitle": "✦ Interactive Visitor's Guide ✦",
+    "center": [
+        27.990,
+        -82.825
+    ],
+    "bounds": {
+        "sw": [
+            27.940,
+            -82.845
+        ],
+        "ne": [
+            28.045,
+            -82.795
+        ]
+    },
+    "poisFile": "pois.json"
+}

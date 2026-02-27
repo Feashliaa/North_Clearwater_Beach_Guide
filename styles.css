@@ -146,28 +146,7 @@ body.list-mode .top-bar {
     margin-top: 1px;
 }
 
-.footer-badge {
-    background: rgba(255, 255, 255, 0.12);
-    border: 1.5px solid rgba(255, 255, 255, 0.4);
-    border-radius: 8px;
-    padding: 8px 14px;
-    text-align: center;
-    flex-shrink: 0;
-}
 
-.footer-badge .b1 {
-    font-family: 'Fredoka One', cursive;
-    font-size: 11px;
-    color: #f7b731;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-.footer-badge .b2 {
-    font-size: 11px;
-    color: rgba(255, 255, 255, 0.8);
-    font-weight: 700;
-}
 
 /* ─ View Toggle Button ─ */
 .view-toggle-btn {
@@ -369,8 +348,8 @@ body.list-mode .legend {
 
 /* ── Legend Body ── */
 .legend-inner {
-    padding: 85px 20px 85px;
-    /* extra bottom padding clears the footer */
+    padding: 85px 20px 20px;
+    /* Top, sides, bottom */
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -561,8 +540,8 @@ body.list-mode .legend {
 /* ─ GPS Button ─ */
 .gps-btn {
     position: fixed;
-    bottom: 80px;
-    left: 15px;
+    bottom: 25px;
+    right: 300px;
     z-index: 999;
     width: 48px;
     height: 48px;
@@ -603,8 +582,8 @@ body.list-mode .map-toggle-btn {
 /* ─ Map Toggle Button ─ */
 .map-toggle-btn {
     position: fixed;
-    bottom: 80px;
-    left: 75px;
+    bottom: 25px;
+    right: 360px;
     z-index: 999;
     width: 48px;
     height: 48px;
@@ -785,6 +764,7 @@ body.list-mode .list-panel {
     flex: 1;
     /* Clamp to 3 lines */
     display: -webkit-box;
+    line-clamp: 3;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
@@ -1028,14 +1008,37 @@ body.list-mode .list-panel {
 .footer-content {
     max-width: 600px;
     margin: 0 auto;
+    color: var(--white);
+}
+
+.footer-badge {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-radius: 8px;
+    padding: 8px 14px;
+    text-align: center;
+}
+
+.footer-badge .b1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 11px;
+    color: #f7b731;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.footer-badge .b2 {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 700;
 }
 
 /* ─ Toast ─ */
 .toast {
     position: fixed;
-    bottom: 85px;
-    left: 50%;
-    transform: translateX(-50%) translateY(100px);
+    bottom: 25px;
+    left: 16px;
+    transform: translateY(100px);
     z-index: 2000;
     background: var(--night);
     color: var(--white);
@@ -1047,19 +1050,17 @@ body.list-mode .list-panel {
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s cubic-bezier(0.32, 0.72, 0, 1);
-
-    width: 60%;
+    width: calc(50vw - 50px);
+    max-width: calc(100vw - 32px);
     white-space: normal;
-    max-width: 90vw;
     text-align: center;
     word-break: break-word;
 }
 
 .toast.visible {
     opacity: 1;
-    transform: translateX(-50%) translateY(0);
+    transform: translateY(0);
 }
-
 
 /* ── Custom Markers ── */
 .custom-marker {
@@ -1193,7 +1194,6 @@ body.list-mode .list-panel {
         top: calc(max(12px, env(safe-area-inset-top)) + 42.5px);
     }
 
-
     .legend {
         display: none;
     }
@@ -1206,11 +1206,24 @@ body.list-mode .list-panel {
     .gps-btn {
         left: unset;
         right: 15px;
+        bottom: 25px;
     }
 
     .map-toggle-btn {
         left: unset;
         right: 75px;
+        bottom: 25px;
+    }
+
+    .footer {
+        display: none;
+    }
+
+    .toast {
+        left: 0%;
+        bottom: 100px;
+        width: 100%;
+        max-width: none;
     }
 }
 
