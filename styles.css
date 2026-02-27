@@ -13,13 +13,13 @@
     --seafoam: #2EC4B6;
     --night: #1B2838;
     --white: #FFFFFF;
-    --dining: #E07A5F;
-    --attract: #0077B6;
-    --nature: #57A773;
-    --nightlife: #E05299;
-    --shopping: #9B5DE5;
-    --hotels: #F4A261;
-    --services: #2EC4B6;
+    --dining: #e05c2a;
+    --attract: #2a7ae0;
+    --nature: #3aaa55;
+    --nightlife: #8b2ae0;
+    --shopping: #e0a02a;
+    --hotels: #2aaae0;
+    --services: #777;
     --shadow: rgba(27, 40, 56, 0.12);
     --shadow-heavy: rgba(27, 40, 56, 0.25);
     --radius: 14px;
@@ -1085,31 +1085,31 @@ body.list-mode .list-panel {
 }
 
 .custom-marker.cat-dining {
-    background: var(--coral);
+    background: var(--dining);
 }
 
 .custom-marker.cat-attractions {
-    background: var(--ocean);
+    background: var(--attract);
 }
 
 .custom-marker.cat-shopping {
-    background: #9B5DE5;
+    background: var(--shopping);
 }
 
 .custom-marker.cat-services {
-    background: var(--seafoam);
+    background: var(--services);
 }
 
 .custom-marker.cat-nature {
-    background: #57A773;
+    background: var(--nature);
 }
 
 .custom-marker.cat-nightlife {
-    background: #E05299;
+    background: var(--nightlife);
 }
 
 .custom-marker.cat-hotels {
-    background: var(--sand);
+    background: var(--hotels);
 }
 
 /* ── Leaflet Overrides ── */
