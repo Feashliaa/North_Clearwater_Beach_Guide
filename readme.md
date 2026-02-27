@@ -1,4 +1,4 @@
-# North Clearwater Beach — Interactive Visitor's Guide
+# North Clearwater Beach - Interactive Visitor's Guide
 
 An interactive, mobile-friendly map guide for visitors to North Clearwater Beach, FL. Built as a reusable template — swap out the config and POI data to deploy for any location.
 
