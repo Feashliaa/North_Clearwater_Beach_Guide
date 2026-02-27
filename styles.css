@@ -100,7 +100,6 @@ body.list-mode .top-bar {
 }
 
 .header-logo .title {
-    font-family: 'Pacifico', cursive;
     font-size: 30px;
     color: #fff;
     text-shadow: 2px 3px 0 rgba(0, 0, 0, 0.3);
@@ -108,7 +107,6 @@ body.list-mode .top-bar {
 }
 
 .header-logo .subtitle {
-    font-family: 'Fredoka One', cursive;
     font-size: 12px;
     color: #f7b731;
     letter-spacing: 3px;
