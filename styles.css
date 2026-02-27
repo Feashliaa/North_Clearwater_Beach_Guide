@@ -541,7 +541,7 @@ body.list-mode .legend {
 .gps-btn {
     position: fixed;
     bottom: 25px;
-    right: 300px;
+    right: 310px;
     z-index: 999;
     width: 48px;
     height: 48px;
@@ -583,7 +583,7 @@ body.list-mode .map-toggle-btn {
 .map-toggle-btn {
     position: fixed;
     bottom: 25px;
-    right: 360px;
+    right: 370px;
     z-index: 999;
     width: 48px;
     height: 48px;
@@ -1037,8 +1037,8 @@ body.list-mode .list-panel {
 .toast {
     position: fixed;
     bottom: 25px;
-    left: 16px;
-    transform: translateY(100px);
+    left: 40%;
+    transform: translateX(-40%) translateY(100px);
     z-index: 2000;
     background: var(--night);
     color: var(--white);
@@ -1050,7 +1050,7 @@ body.list-mode .list-panel {
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s cubic-bezier(0.32, 0.72, 0, 1);
-    width: calc(50vw - 50px);
+    width: calc(60vw);
     max-width: calc(100vw - 32px);
     white-space: normal;
     text-align: center;
@@ -1059,7 +1059,7 @@ body.list-mode .list-panel {
 
 .toast.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(-40%) translateY(0);
 }
 
 /* ── Custom Markers ── */
