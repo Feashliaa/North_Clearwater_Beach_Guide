@@ -52,9 +52,9 @@ The app is data-driven. To deploy for a different location, you only need to edi
 | ----------- | ----------------------------------------------- |
 | `title`     | Displayed in the top bar                        |
 | `subtitle`  | Displayed below the title                       |
-| `center`    | `[lat, lng]` — where the map loads              |
-| `bounds.sw` | `[lat, lng]` — southwest corner of map boundary |
-| `bounds.ne` | `[lat, lng]` — northeast corner of map boundary |
+| `center`    | `[lat, lng]` - where the map loads              |
+| `bounds.sw` | `[lat, lng]` - southwest corner of map boundary |
+| `bounds.ne` | `[lat, lng]` - northeast corner of map boundary |
 
 ### `pois.json`
 
