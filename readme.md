@@ -107,5 +107,5 @@ Array of place objects:
 
 ## License
 
-MIT License — Copyright (c) 2026 Riley Dorrington.
+MIT License - Copyright (c) 2026 Riley Dorrington.
 See [LICENSE](./LICENSE) for full terms.
