@@ -13,6 +13,13 @@
     --seafoam: #2EC4B6;
     --night: #1B2838;
     --white: #FFFFFF;
+    --dining: #E07A5F;
+    --attract: #0077B6;
+    --nature: #57A773;
+    --nightlife: #E05299;
+    --shopping: #9B5DE5;
+    --hotels: #F4A261;
+    --services: #2EC4B6;
     --shadow: rgba(27, 40, 56, 0.12);
     --shadow-heavy: rgba(27, 40, 56, 0.25);
     --radius: 14px;
@@ -35,6 +42,8 @@ body {
     height: 100%;
     z-index: 1;
     transition: opacity 0.3s ease;
+    margin-right: 300px;
+    width: calc(100% - 300px);
 }
 
 body.list-mode #map {
@@ -42,9 +51,9 @@ body.list-mode #map {
     pointer-events: none;
 }
 
-.leaflet-control-zoom {
-    display: none;
-}
+
+
+/* START OF TOP BAR */
 
 /* ─ Top Bar ─ */
 .top-bar {
@@ -53,8 +62,7 @@ body.list-mode #map {
     left: 0;
     right: 0;
     z-index: 1000;
-    padding: 12px 16px;
-    padding-top: max(12px, env(safe-area-inset-top));
+
     background: linear-gradient(to bottom, rgba(27, 40, 56, 0.85) 0%, rgba(27, 40, 56, 0.4) 70%, transparent 100%);
     pointer-events: none;
 }
@@ -73,21 +81,48 @@ body.list-mode .top-bar {
     gap: 10px;
 }
 
-.logo-mark {
-    width: 35px;
-    height: 35px;
-    background: var(--ocean);
-    border-radius: 10px;
+.header {
+    background: linear-gradient(135deg, #0a2e5a 0%, #1b3d6e 50%, #0e5a8a 100%);
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-size: 18px;
+    justify-content: space-between;
+    padding: 10px 22px;
+    gap: 16px;
+    border-bottom: 4px solid #f7b731;
+    position: relative;
+    overflow: hidden;
+    width: 100vw;
+}
+
+.header-logo {
+    text-align: left;
     flex-shrink: 0;
-    box-shadow: 0 2px 8px var(--shadow-heavy);
-    user-select: none;
+}
+
+.header-logo .title {
+    font-family: 'Pacifico', cursive;
+    font-size: 30px;
+    color: #fff;
+    text-shadow: 2px 3px 0 rgba(0, 0, 0, 0.3);
+    line-height: 1;
+}
+
+.header-logo .subtitle {
+    font-family: 'Fredoka One', cursive;
+    font-size: 12px;
+    color: #f7b731;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 2px;
 }
 
 .title {
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    flex: 1;
+}
+
+.subtitle {
     user-select: none;
     -webkit-tap-highlight-color: transparent;
     flex: 1;
@@ -111,6 +146,29 @@ body.list-mode .top-bar {
     text-transform: uppercase;
     color: var(--sand);
     margin-top: 1px;
+}
+
+.footer-badge {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-radius: 8px;
+    padding: 8px 14px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.footer-badge .b1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 11px;
+    color: #f7b731;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.footer-badge .b2 {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 700;
 }
 
 /* ─ View Toggle Button ─ */
@@ -143,6 +201,8 @@ body.list-mode .top-bar {
     transform: scale(0.95);
 }
 
+/* END OF TOP BAR */
+
 /* Show list icon, hide map icon by default (map mode) */
 .view-toggle-btn .icon-map {
     display: none;
@@ -173,7 +233,7 @@ body.list-mode .view-toggle-btn .icon-list {
 /* ─ Filter Bar ─ */
 .filter-bar {
     position: fixed;
-    top: calc(max(12px, env(safe-area-inset-top)) + 75px);
+    top: calc(max(12px, env(safe-area-inset-top)) + 60px);
     left: 0;
     right: 0;
     z-index: 1000;
@@ -288,11 +348,223 @@ body.list-mode .view-toggle-btn .icon-list {
     background: var(--sand);
 }
 
+/* ── LEGEND PANEL ── */
+.legend {
+    position: fixed;
+    top: 0px;
+    /* sits below header */
+    right: 0;
+    bottom: 0px;
+    /* sits above footer (adjust if footer height differs) */
+    width: 300px;
+    background: #f8f3ea;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    z-index: 500;
+}
+
+/* Hide it in list mode */
+body.list-mode .legend {
+    display: none;
+}
+
+/* ── Legend Body ── */
+.legend-inner {
+    padding: 85px 20px 85px;
+    /* extra bottom padding clears the footer */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.cat-section {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background: #fff;
+}
+
+.cat-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.cat-head.dining {
+    background: var(--dining);
+}
+
+.cat-head.attractions {
+    background: var(--attract);
+}
+
+.cat-head.nature {
+    background: var(--nature);
+}
+
+.cat-head.nightlife {
+    background: var(--nightlife);
+}
+
+.cat-head.shopping {
+    background: var(--shopping);
+}
+
+.cat-head.hotels {
+    background: var(--hotels);
+}
+
+.cat-head.services {
+    background: var(--services);
+}
+
+.cat-items {
+    padding: 4px 8px 6px;
+}
+
+.cat-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 5px 4px;
+    font-size: 12px;
+    color: #333;
+    line-height: 1.35;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.15s;
+}
+
+.cat-item:last-child {
+    border-bottom: none;
+}
+
+.cat-item:hover {
+    background: #f0f0f0;
+}
+
+.nbadge {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 1px;
+}
+
+.nbadge.dining {
+    background: var(--dining);
+}
+
+.nbadge.attractions {
+    background: var(--attract);
+}
+
+.nbadge.nature {
+    background: var(--nature);
+}
+
+.nbadge.nightlife {
+    background: var(--nightlife);
+}
+
+.nbadge.shopping {
+    background: var(--shopping);
+}
+
+.nbadge.hotels {
+    background: var(--hotels);
+}
+
+.nbadge.services {
+    background: var(--services);
+}
+
+.item-name {
+    font-weight: 700;
+    color: #1a1a1a;
+    font-size: 12px;
+}
+
+.item-addr {
+    font-size: 10px;
+    color: #888;
+    font-style: italic;
+}
+
+.num-badge {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fredoka One', cursive;
+    font-size: 11px;
+    color: #fff;
+    margin-top: 1px;
+}
+
+.num-badge.dining {
+    background: var(--dining);
+}
+
+.num-badge.attractions {
+    background: var(--attract);
+}
+
+.num-badge.nature {
+    background: var(--nature);
+}
+
+.num-badge.nightlife {
+    background: var(--nightlife);
+}
+
+.num-badge.shopping {
+    background: var(--shopping);
+}
+
+.num-badge.hotels {
+    background: var(--hotels);
+}
+
+.num-badge.services {
+    background: var(--services);
+}
+
+.poi-name {
+    font-weight: 700;
+    color: #1a1a1a;
+    font-size: 12px;
+}
+
+.poi-addr {
+    font-size: 10px;
+    color: #888;
+    font-style: italic;
+}
+
 /* ─ GPS Button ─ */
 .gps-btn {
     position: fixed;
-    bottom: 24px;
-    right: 16px;
+    bottom: 80px;
+    left: 15px;
     z-index: 999;
     width: 48px;
     height: 48px;
@@ -333,8 +605,8 @@ body.list-mode .map-toggle-btn {
 /* ─ Map Toggle Button ─ */
 .map-toggle-btn {
     position: fixed;
-    bottom: 24px;
-    right: 76px;
+    bottom: 80px;
+    left: 75px;
     z-index: 999;
     width: 48px;
     height: 48px;
@@ -382,7 +654,7 @@ body.list-mode .map-toggle-btn {
     transform: translateY(12px);
     transition: opacity 0.3s ease, transform 0.3s ease;
     padding-top: calc(max(12px, env(safe-area-inset-top)) + var(--topbar-height) + 64px);
-    padding-bottom: calc(max(20px, env(safe-area-inset-bottom)) + 16px);
+    padding-bottom: calc(max(20px, env(safe-area-inset-bottom)) + 10vh);
 }
 
 body.list-mode .list-panel {
@@ -463,6 +735,13 @@ body.list-mode .list-panel {
     justify-content: center;
     flex-shrink: 0;
     margin-top: 1px;
+}
+
+.poi-card-icon svg,
+.poi-card-icon svg * {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
 }
 
 .poi-card-meta {
@@ -584,6 +863,7 @@ body.list-mode .list-panel {
     transform: translateY(100%);
     transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
     max-height: 70dvh;
+    width: 100%;
     overflow-y: auto;
     overscroll-behavior: contain;
     padding-bottom: max(0px, env(safe-area-inset-bottom));
@@ -733,10 +1013,29 @@ body.list-mode .list-panel {
     background: #F0F2F5;
 }
 
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 998;
+    padding: 12px 20px;
+    font-size: 12px;
+    text-align: center;
+    background: rgba(27, 40, 56, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.footer-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
 /* ─ Toast ─ */
 .toast {
     position: fixed;
-    bottom: 24px;
+    bottom: 85px;
     left: 50%;
     transform: translateX(-50%) translateY(100px);
     z-index: 2000;
@@ -751,7 +1050,7 @@ body.list-mode .list-panel {
     pointer-events: none;
     transition: all 0.3s cubic-bezier(0.32, 0.72, 0, 1);
 
-    width: 90%;
+    width: 60%;
     white-space: normal;
     max-width: 90vw;
     text-align: center;
@@ -774,7 +1073,10 @@ body.list-mode .list-panel {
     border-radius: 50%;
     border: 3px solid var(--white);
     box-shadow: 0 2px 8px var(--shadow-heavy);
-    font-size: 16px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
     transition: transform 0.2s ease;
     cursor: pointer;
 }
@@ -818,13 +1120,27 @@ body.list-mode .list-panel {
     border-radius: 4px 0 0 0 !important;
 }
 
+/* Leaflet popup custom */
+.custom-popup .leaflet-popup-content-wrapper {
+    border-radius: 12px;
+    padding: 0;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+    max-width: 240px;
+}
+
+.custom-popup .leaflet-popup-content {
+    margin: 0;
+}
 
 
-@media (min-width: 600px) {
+
+@media (min-width: 731px) {
     .drawer {
         left: 50%;
         transform: translate(-50%, 100%);
-        max-width: 1000px;
+        width: 65%;
+        max-width: calc(100% - 300px - 40px);
+        max-height: 80dvh;
         border-radius: 20px 20px 0 0;
     }
 
@@ -832,60 +1148,86 @@ body.list-mode .list-panel {
         transform: translate(-50%, 0);
     }
 
-    .drawer-open .gps-btn,
-    .drawer-open .map-toggle-btn {
-        transform: none;
-    }
-}
-
-@media (max-width: 525px) {
-    .top-bar h1 {
+    .drawer-title {
         font-size: 28px;
     }
 
-    .top-bar h1 span {
-        font-size: 18px;
-        letter-spacing: 1px;
+    .drawer-desc {
+        font-size: 15.5px;
     }
 
-    .top-bar {
-        padding: 8px 12px;
-        padding-top: max(8px, env(safe-area-inset-top));
+    .drawer-content {
+        padding: 20px 32px 24px;
     }
 
-    .view-toggle-label {
-        display: none;
+    .drawer-open .gps-btn,
+    .drawer-open .map-toggle-btn {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+@media (max-width: 730px) {
+    .header {
+        width: 100vw;
+        padding: 8px 14px;
+    }
+
+    .header-logo .title {
+        font-size: 1.5rem;
+    }
+
+    .header-logo .subtitle {
+        font-size: 0.65rem;
+        letter-spacing: 2px;
     }
 
     .view-toggle-btn {
-        padding: 9px 11px;
+        padding: 7px 10px;
+        font-size: 0.75rem;
     }
 
-    .list-grid {
-        grid-template-columns: 1fr;
+    .top-bar {
+        padding: 0px;
     }
 
     .filter-bar {
-        top: calc(max(12px, env(safe-area-inset-top)) + 55px);
+        top: calc(max(12px, env(safe-area-inset-top)) + 42.5px);
+    }
+
+
+    .legend {
+        display: none;
+    }
+
+    #map {
+        margin-right: 0;
+        width: 100%;
+    }
+
+    .gps-btn {
+        left: unset;
+        right: 15px;
+    }
+
+    .map-toggle-btn {
+        left: unset;
+        right: 75px;
     }
 }
 
-@media (max-width: 385px) {
+@media (max-width: 520px) {
 
-    .filter-bar {
-        top: calc(max(12px, env(safe-area-inset-top)) + 85px);
+    /* shrink the title*/
+    .header-logo .title {
+        font-size: 1.25rem;
     }
-
 }
 
-@media (max-width: 305px) {
+@media (max-width: 370px) {
 
-    .filter-bar {
-        top: calc(max(12px, env(safe-area-inset-top)) + 100px);
+    /* hide the subtitle on very small screens */
+    .header-logo .subtitle {
+        display: none;
     }
-
-    .list-panel {
-        padding-top: calc(max(12px, env(safe-area-inset-top)) + var(--topbar-height) + 100px);
-    }
-
 }

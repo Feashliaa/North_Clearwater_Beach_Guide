@@ -123,6 +123,7 @@ async function loadPois() {
     }
     createMarkers();
     renderCards();
+    buildLegend();
 }
 
 
@@ -137,7 +138,7 @@ function createMarkers() {
     POIS.forEach(poi => {
         const icon = L.divIcon({
             className: '',
-            html: `<div class="custom-marker cat-${poi.category}">${CATEGORY_ICONS[poi.category]}</div>`,
+            html: `<div class="custom-marker cat-${poi.category}" data-num="${POIS.indexOf(poi) + 1}">${POIS.indexOf(poi) + 1}</div>`,
             iconSize: [36, 36],
             iconAnchor: [18, 18]
         });
@@ -170,6 +171,63 @@ function filterMarkers(category) {
 
     // Also re-render cards if in list mode
     renderCards();
+    buildLegend(category);
+}
+
+// ══════════════════════════════════════════════
+//  LEGEND PANEL BUILD
+// ══════════════════════════════════════════════
+
+const CAT_ORDER = ['dining', 'attractions', 'nature', 'nightlife', 'shopping', 'hotels', 'services'];
+
+function buildLegend(filterCat = 'all') {
+    const body = document.getElementById('legendBody');
+    if (!body) return;
+    body.innerHTML = '';
+
+    CAT_ORDER.forEach(catKey => {
+        if (filterCat !== 'all' && catKey !== filterCat) return;
+
+        const items = POIS.filter(p => p.category === catKey);
+        if (!items.length) return;
+
+        const cat = CATEGORY_COLORS[catKey];
+        const cat_icons = CATEGORY_ICONS[catKey];
+
+        const section = document.createElement('div');
+        section.className = `cat-section ${catKey}`;
+
+        const head = document.createElement('div');
+        head.className = `cat-head ${catKey}`;
+        head.innerHTML = `<span class="cat-icon">${cat_icons}</span> ${cat.label}`;
+        section.appendChild(head);
+
+        const itemsDiv = document.createElement('div');
+        itemsDiv.className = 'cat-items';
+
+        items.forEach(poi => {
+            const num = POIS.indexOf(poi) + 1;
+            const item = document.createElement('div');
+            item.className = 'cat-item';
+            item.innerHTML = `
+                <div class="nbadge ${catKey}">${num}</div>
+                <div>
+                    <div class="item-name">${poi.name}</div>
+                    <div class="item-addr">${poi.address}</div>
+                </div>`;
+            item.addEventListener('click', () => {
+                const entry = markers.find(m => m.poi === poi);
+                if (entry) {
+                    map.flyTo([poi.lat, poi.lng], 16, { duration: 0.8 });
+                    setTimeout(() => openDrawer(poi), 850);
+                }
+            });
+            itemsDiv.appendChild(item);
+        });
+
+        section.appendChild(itemsDiv);
+        body.appendChild(section);
+    });
 }
 
 
