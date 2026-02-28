@@ -4,13 +4,13 @@
 const minZoom = window.innerWidth <= 400 ? 13 : 14;
 
 const CATEGORY_COLORS = {
-    dining: { bg: '#E07A5F', label: 'Dining' },
-    attractions: { bg: '#0077B6', label: 'Attractions' },
-    nature: { bg: '#57A773', label: 'Nature' },
-    shopping: { bg: '#9B5DE5', label: 'Shopping' },
-    nightlife: { bg: '#E05299', label: 'Nightlife' },
-    services: { bg: '#2EC4B6', label: 'Services' },
-    hotels: { bg: '#F4A261', label: 'Hotels' }
+    dining: { bg: '#e05c2a', label: 'Dining' },
+    attractions: { bg: '#2a7ae0', label: 'Attractions' },
+    nature: { bg: '#3aaa55', label: 'Nature' },
+    shopping: { bg: '#e0a02a', label: 'Shopping' },
+    nightlife: { bg: '#8b2ae0', label: 'Nightlife' },
+    services: { bg: '#777777', label: 'Services' },
+    hotels: { bg: '#2AAAE0', label: 'Hotels' }
 };
 
 const CATEGORY_ICONS = {

@@ -302,11 +302,41 @@ body.list-mode .view-toggle-btn .icon-list {
 }
 
 .filter-pill .dot {
+    display: inline-block;
     width: 8px;
     height: 8px;
     border-radius: 50%;
     flex-shrink: 0;
 }
+
+.filter-pill .dot.dining {
+    background: var(--dining);
+}
+
+.filter-pill .dot.attractions {
+    background: var(--attract);
+}
+
+.filter-pill .dot.nature {
+    background: var(--nature);
+}
+
+.filter-pill .dot.nightlife {
+    background: var(--nightlife);
+}
+
+.filter-pill .dot.shopping {
+    background: var(--shopping);
+}
+
+.filter-pill .dot.hotels {
+    background: var(--hotels);
+}
+
+.filter-pill .dot.services {
+    background: var(--services);
+}
+
 
 .filter-pill.active:hover {
     background: var(--sand);
