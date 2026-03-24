@@ -218,6 +218,8 @@
                 btn.classList.add('active');
                 currentView = btn.dataset.view;
 
+                document.querySelector('.calendar-view-toggle').classList.toggle('list-active', currentView === 'list');
+
                 const grid = document.getElementById('calGrid');
                 const list = document.getElementById('calList');
 
