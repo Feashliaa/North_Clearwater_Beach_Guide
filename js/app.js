@@ -277,7 +277,7 @@ function renderCards() {
             : '';
 
         const linkBtn = poi.link
-            ? `<span class="poi-card-cta">${poi.linkLabel || 'Learn More'} →</span>`
+            ? `<span class="poi-card-cta">${poi.linkLabel || 'Learn More'}</span>`
             : `<span></span>`;
 
         return `
@@ -301,10 +301,9 @@ function renderCards() {
                         ${distanceLabel}
                         ${linkBtn}
                         <button class="poi-card-dir" onclick="event.stopPropagation(); openDirections(${poi.lat}, ${poi.lng})">
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
-                                <path d="M3.27 12.77L12 21.5l8.73-8.73a2.5 2.5 0 000-3.54l-5.19-5.19a2.5 2.5 0 00-3.54 0L3.27 12.77z"
-                                    stroke="#7A8599" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7A8599" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="3 11 22 2 13 21 11 13 3 11"/>
+                        </svg>
                             Directions
                         </button>
                     </div>
