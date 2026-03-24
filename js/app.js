@@ -109,7 +109,7 @@ function initTileErrorHandling() {
 // CONFIG LOADING
 // ==============================================
 async function loadConfig() {
-    const res = await fetch('config.json');
+    const res = await fetch('json/config.json');
     const cfg = await res.json();
     return cfg;
 }
@@ -120,7 +120,7 @@ async function loadConfig() {
 
 async function loadPois() {
     try {
-        const res = await fetch('pois.json');
+        const res = await fetch('json/pois.json');
         POIS = await res.json();
     } catch (err) {
         showToast('Failed to load points of interest.');
@@ -237,7 +237,7 @@ function buildLegend(filterCat = 'all') {
 
 
 // ==============================================
-//  LIST VIEW — CARDS
+//  LIST VIEW - CARDS
 // ==============================================
 
 function renderCards() {
@@ -324,7 +324,7 @@ function renderCards() {
 }
 
 // ==============================================
-//  VIEW TOGGLE (MAP ↔ LIST)
+//  VIEW TOGGLE (MAP & LIST)
 // ==============================================
 
 function initViewToggle() {
@@ -332,6 +332,12 @@ function initViewToggle() {
     const label = btn.querySelector('.view-toggle-label');
 
     btn.addEventListener('click', () => {
+        // Exit calendar view if active
+        document.body.classList.remove('calendar-mode');
+        document.getElementById('calendarPanel').setAttribute('aria-hidden', 'true');
+        document.getElementById('viewCalendarBtn').classList.remove('calendar-active')
+
+
         isListView = !isListView;
         document.body.classList.toggle('list-mode', isListView);
         document.getElementById('listPanel').setAttribute('aria-hidden', String(!isListView));

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Clearwater Beach Map</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #d8cfc4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        :root {
+            --dining: #e05c2a;
+            --attract: #2a7ae0;
+            --nature: #3aaa55;
+            --nightlife: #8b2ae0;
+            --shopping: #e0a02a;
+            --hotels: #2aaae0;
+            --services: #777;
+        }
+
+        .cat-section {
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cat-head {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 8px;
+            color: #fff;
+            font-family: 'Lato', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .cat-head.dining {
+            background: var(--dining);
+        }
+
+        .cat-head.attractions {
+            background: var(--attract);
+        }
+
+        .cat-head.nature {
+            background: var(--nature);
+        }
+
+        .cat-head.nightlife {
+            background: var(--nightlife);
+        }
+
+        .cat-head.shopping {
+            background: var(--shopping);
+        }
+
+        .cat-head.hotels {
+            background: var(--hotels);
+        }
+
+        .cat-head.services {
+            background: var(--services);
+        }
+
+        .cat-items {
+            padding: 1px 6px 2px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            justify-content: space-evenly;
+        }
+
+        .cat-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 5px;
+            padding: 3px 5px;
+            line-height: 1.2;
+            border-bottom: 1px solid #f0f0f0;
+            border-radius: 2px;
+        }
+
+        .cat-item:last-child {
+            border-bottom: none;
+        }
+
+        .nbadge {
+            flex-shrink: 0;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            font-weight: 700;
+            color: #fff;
+            margin-top: 1px;
+        }
+
+        .nbadge.dining {
+            background: var(--dining);
+        }
+
+        .nbadge.attractions {
+            background: var(--attract);
+        }
+
+        .nbadge.nature {
+            background: var(--nature);
+        }
+
+        .nbadge.nightlife {
+            background: var(--nightlife);
+        }
+
+        .nbadge.shopping {
+            background: var(--shopping);
+        }
+
+        .nbadge.hotels {
+            background: var(--hotels);
+        }
+
+        .nbadge.services {
+            background: var(--services);
+        }
+
+        .item-name {
+            font-weight: 700;
+            color: #1a1a1a;
+            font-size: 14px;
+        }
+
+        .item-addr {
+            font-size: 12px;
+            color: #888;
+            font-style: oblique;
+        }
+
+        .page {
+            width: 1280px;
+            height: 900px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.4);
+            border: 5px solid #1a4f6e;
+            background: #1a4f6e;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .top-banner {
+            background: #1a4f6e;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 6px 0;
+            gap: 2px;
+        }
+
+        .top-banner h1 {
+            font-family: "Playfair Display", serif;
+            font-size: 18px;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .top-banner p {
+            font-family: "Lato", sans-serif;
+            font-size: 10px;
+            color: #d4a83c;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .gold-bar {
+            height: 4px;
+            background: #d4a83c;
+            flex-shrink: 0;
+        }
+
+        .content-row {
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+            min-height: 0;
+        }
+
+        .map-area {
+            width: 600px;
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+            border-right: 4px solid #d4a83c;
+        }
+
+        .map-base {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+            display: block;
+        }
+
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .qr-box {
+            position: absolute;
+            bottom: 14px;
+            left: 14px;
+            width: 108px;
+            height: 108px;
+            background: rgba(255, 255, 255, 0.96);
+            border: 3px solid #1a4f6e;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+            overflow: hidden;
+        }
+
+        .qr-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .qr-box span {
+            font-size: 9px;
+            color: #aaa;
+            font-family: "Lato", sans-serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .sidebar {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #faf7f2;
+            overflow: hidden;
+        }
+
+        .sidebar-header {
+            background: #1a4f6e;
+            padding: 5px 20px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .sidebar-header h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 15px;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 1px;
+        }
+
+        .sidebar-header p {
+            font-family: "Lato", sans-serif;
+            font-size: 7px;
+            color: #d4a83c;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .poi-area {
+            flex: 1;
+            padding: 6px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px;
+            align-content: stretch;
+        }
+
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+            }
+
+            .page {
+                box-shadow: none;
+                border: none;
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+
+        <!-- FULL-WIDTH TOP BANNER -->
+        <div class="top-banner">
+            <h1>Clearwater Beach</h1>
+            <p>Florida Gulf Coast &nbsp;·&nbsp; Visitor's Guide</p>
+        </div>
+        <div class="gold-bar"></div>
+
+        <!-- MAP + SIDEBAR -->
+        <div class="content-row">
+
+            <div class="map-area">
+                <!-- clearwater_beach.webp or clearwater_beach_shrunk.png-->
+                <img src="images/clearwater_beach.webp" alt="Map of Clearwater Beach" class="map-base">
+
+                <!-- Minimal SVG overlay: compass only, no tint, no labels -->
+                <svg class="map-overlay" viewBox="0 0 592 837" xmlns="http://www.w3.org/2000/svg"
+                    preserveAspectRatio="none">
+                    <defs>
+                        <filter id="ds">
+                            <feDropShadow dx="1" dy="1" stdDeviation="2" flood-color="rgba(0,0,0,0.65)" />
+                        </filter>
+                    </defs>
+                    <!-- Compass Rose -->
+                    <g transform="translate(545, 790)">
+                        <circle cx="0" cy="0" r="40" fill="rgba(250,247,242,0.93)" stroke="#1a4f6e" stroke-width="2" />
+                        <polygon points="0,-20 4.5,-8 0,-12 -4.5,-8" fill="#1a4f6e" />
+                        <polygon points="0,20 4.5,8 0,12 -4.5,8" fill="#9ab8c8" />
+                        <polygon points="20,0 8,4.5 12,0 8,-4.5" fill="#9ab8c8" />
+                        <polygon points="-20,0 -8,4.5 -12,0 -8,-4.5" fill="#9ab8c8" />
+                        <circle cx="0" cy="0" r="3" fill="#d4a83c" />
+                        <text x="0" y="-23" font-family="Cinzel,serif" font-size="9" fill="#1a4f6e" text-anchor="middle"
+                            font-weight="700">N</text>
+                        <text x="0" y="33" font-family="Cinzel,serif" font-size="7" fill="#7a9aaa"
+                            text-anchor="middle">S</text>
+                        <text x="28" y="3" font-family="Cinzel,serif" font-size="7" fill="#7a9aaa"
+                            text-anchor="middle">E</text>
+                        <text x="-28" y="3" font-family="Cinzel,serif" font-size="7" fill="#7a9aaa"
+                            text-anchor="middle">W</text>
+                    </g>
+                </svg>
+
+                <div class="qr-box">
+                    <img src="north_clearwater_beach_guide.webp" alt="QR Code">
+                </div>
+            </div>
+
+            <!-- SIDEBAR -->
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    <h2>Clearwater Beach</h2>
+                    <p>Points of Interest</p>
+                </div>
+                <div class="gold-bar"></div>
+                <div class="poi-area" id="legendBody"></div>
+            </div>
+
+        </div><!-- /content-row -->
+    </div>
+
+    <script>
+        let POIS = [];
+        const CATEGORY_COLORS = {
+            dining: { bg: '#E07A5F', label: 'Dining' },
+            attractions: { bg: '#0077B6', label: 'Attractions' },
+            nature: { bg: '#57A773', label: 'Nature' },
+            shopping: { bg: '#9B5DE5', label: 'Shopping' },
+            nightlife: { bg: '#E05299', label: 'Nightlife' },
+            services: { bg: '#2EC4B6', label: 'Services' },
+            hotels: { bg: '#F4A261', label: 'Hotels' }
+        };
+
+        const CATEGORY_ICONS = {
+            dining: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 00-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/>
+    </svg>`,
+            attractions: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 9a3 3 0 010-6h20a3 3 0 110 6"/><path d="M2 15a3 3 0 000 6h20a3 3 0 100-6"/><path d="M2 9v6"/><path d="M22 9v6"/><path d="M9 3v18"/>
+    </svg>`,
+            nature: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
+        <path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
+        <path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
+    </svg>`,
+            shopping: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 01-8 0"/>
+    </svg>`,
+            nightlife: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 22h8"/><path d="M12 11v11"/><path d="M19 3l-7 8-7-8h14z"/>
+    </svg>`,
+            services: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 17h14v-5l-2-5H7L5 12v5z"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/><path d="M5 12h14"/><path d="M9 7v5"/><path d="M15 7v5"/>
+    </svg>`,
+            hotels: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 21h20"/><path d="M5 21v-8a3 3 0 013-3h8a3 3 0 013 3v8"/><path d="M9 10h.01"/><path d="M15 10h.01"/>
+    </svg>`
+        };
+
+        const CAT_ORDER = ['dining', 'attractions', 'nature', 'nightlife', 'shopping', 'hotels', 'services'];
+        const REF_NORTH = { lat: 28.02467, lng: -82.81964, px: 239, py: 84 };  // Caladesi
+        const REF_SOUTH = { lat: 27.95911, lng: -82.82771, px: 189, py: 736 };  // Sand Key
+        const REF_EAST = { lat: 27.96596, lng: -82.80415, px: 411, py: 661 };  // Clearwater Ferry
+        const REF_WEST = { lat: 27.98800, lng: -82.82900, px: 180, py: 442 };  // North Beach
+
+        const scaleX = (REF_EAST.px - REF_WEST.px) / (REF_EAST.lng - REF_WEST.lng);
+        const scaleY = (REF_SOUTH.py - REF_NORTH.py) / (REF_SOUTH.lat - REF_NORTH.lat);
+
+        function project(lat, lng) {
+            const x = REF_WEST.px + (lng - REF_WEST.lng) * scaleX;
+            const y = REF_NORTH.py + (lat - REF_NORTH.lat) * scaleY - 5;
+            return { x, y };
+        }
+
+        function buildMarkers() {
+            const svg = document.querySelector('.map-overlay');
+            const catToVar = {
+                dining: '--dining', attractions: '--attract', nature: '--nature',
+                nightlife: '--nightlife', shopping: '--shopping', hotels: '--hotels', services: '--services'
+            };
+            POIS.forEach((poi, i) => {
+                const num = i + 1;
+                const { x, y } = project(poi.lat, poi.lng);
+                const cssVar = catToVar[poi.category] || '--services';
+                const color = getComputedStyle(document.documentElement).getPropertyValue(cssVar).trim();
+                svg.innerHTML += `
+            <circle cx="${x}" cy="${y}" r="9" fill="${color}" stroke="#fff" stroke-width="1.5"/>
+            <text x="${x}" y="${y + 4}" text-anchor="middle" font-size="9" font-weight="700" 
+                  fill="#fff" font-family="Lato,sans-serif">${num}</text>
+        `;
+            });
+        }
+
+        async function loadPois() {
+            try {
+                const res = await fetch('pois.json');
+                POIS = await res.json();
+            } catch (err) {
+                console.error('Failed to load POIs:', err);
+                POIS = [];
+            }
+            buildLegend();
+            buildMarkers();
+        }
+
+        function buildLegend() {
+            const body = document.getElementById('legendBody');
+            if (!body) return;
+            body.innerHTML = '';
+            CAT_ORDER.forEach(catKey => {
+                const items = POIS.filter(p => p.category === catKey);
+                if (!items.length) return;
+                const section = document.createElement('div');
+                section.className = `cat-section ${catKey}`;
+                const head = document.createElement('div');
+                head.className = `cat-head ${catKey}`;
+                head.innerHTML = `<span>${CATEGORY_ICONS[catKey]}</span> ${CATEGORY_COLORS[catKey].label}`;
+                section.appendChild(head);
+                const itemsDiv = document.createElement('div');
+                itemsDiv.className = 'cat-items';
+                items.forEach(poi => {
+                    const num = POIS.indexOf(poi) + 1;
+                    const item = document.createElement('div');
+                    item.className = 'cat-item';
+                    item.innerHTML = `
+          <div class="nbadge ${catKey}">${num}</div>
+          <div>
+            <div class="item-name">${poi.name}</div>
+            <div class="item-addr">${poi.address}</div>
+          </div>`;
+                    itemsDiv.appendChild(item);
+                });
+                section.appendChild(itemsDiv);
+                body.appendChild(section);
+            });
+        }
+
+        loadPois();
+    </script>
+</body>
+
+</html>

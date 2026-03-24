@@ -1,0 +1,47 @@
+[
+    {
+        "date": "2026-03-28",
+        "title": "Beach Cleanup",
+        "time": "9:00 AM - 12:00 PM",
+        "description": "Community beach cleanup event. Bags and gloves provided.",
+        "location": "North Clearwater Beach",
+        "category": "Community",
+        "color": "#3aaa55"
+    },
+    {
+        "date": "2026-03-28",
+        "title": "Sunset Live Music",
+        "time": "6:00 PM",
+        "description": "Live acoustic set on the beach at sunset.",
+        "location": "Pier 60 Clearwater",
+        "category": "Music",
+        "color": "#8b2ae0"
+    },
+    {
+        "date": "2026-04-04",
+        "title": "BOGO Tuesdays",
+        "time": "All Day",
+        "description": "Buy one get one free on all draft beers.",
+        "location": "Frenchy's Rockaway Grill",
+        "category": "Dining",
+        "color": "#e05c2a"
+    },
+    {
+        "date": "2026-04-11",
+        "title": "Dolphin Tour Special",
+        "time": "10:00 AM & 2:00 PM",
+        "description": "Discounted dolphin watching tours. Book online or walk up.",
+        "location": "Little Toot Dolphin Adventure",
+        "category": "Activity",
+        "color": "#2a7ae0"
+    },
+    {
+        "date": "2026-04-18",
+        "title": "Art Walk",
+        "time": "5:00 PM - 9:00 PM",
+        "description": "Local artists showcase along the waterfront.",
+        "location": "Clearwater Beach",
+        "category": "Arts",
+        "color": "#e0a02a"
+    }
+]
