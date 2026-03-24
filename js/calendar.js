@@ -114,17 +114,15 @@
     function renderList() {
         const listContainer = document.getElementById('calList');
         if (!listContainer) return;
-
         const upcoming = getUpcomingEvents();
-
         if (!upcoming.length) {
             listContainer.innerHTML = '<div class="calendar-no-events">No upcoming events</div>';
             return;
         }
-
         listContainer.innerHTML = upcoming.map(ev => {
             const date = new Date(ev.date + 'T00:00:00');
             const dateStr = date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+            const icon = ev.category && CATEGORY_ICONS[ev.category] ? CATEGORY_ICONS[ev.category] : '';
             const locationHtml = ev.location
                 ? `<div class="calendar-event-location">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -136,13 +134,12 @@
                 : '';
             return `<div class="calendar-event-card" data-date="${ev.date}" style="border-left-color:${CATEGORY_COLORS[ev.category]?.bg || 'var(--ocean)'}">
                 <div class="calendar-event-date">${dateStr}</div>
-                <div class="calendar-event-title">${ev.title}</div>
+                <div class="calendar-event-title">${icon} ${ev.title}</div>
                 ${ev.time ? `<div class="calendar-event-time">${ev.time}</div>` : ''}
                 ${ev.description ? `<div class="calendar-event-desc">${ev.description}</div>` : ''}
                 ${locationHtml}
             </div>`;
         }).join('');
-
         listContainer.querySelectorAll('.calendar-event-card').forEach(card => {
             card.addEventListener('click', () => {
                 const ev = events.find(e => e.date === card.dataset.date && e.title === card.querySelector('.calendar-event-title').textContent);
