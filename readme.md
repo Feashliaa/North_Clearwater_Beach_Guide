@@ -2,7 +2,7 @@
 
 An interactive, mobile-friendly map guide for visitors to North Clearwater Beach, FL. Built as a reusable template — swap out the config and POI data to deploy for any location.
 
-**[View Live Demo →](https://feashliaa.github.io/North_Clearwater_Beach_Guide/)**
+**[View Live Demo](https://feashliaa.github.io/North_Clearwater_Beach_Guide/)**
 
 ---
 
