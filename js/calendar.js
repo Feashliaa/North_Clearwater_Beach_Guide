@@ -71,7 +71,7 @@
             if (dayEvents.length) {
                 eventsHtml = '<div class="calendar-day-events">';
                 dayEvents.slice(0, 2).forEach(ev => {
-                    const color = ev.color || 'var(--ocean)';
+                    const color = ev.category && CATEGORY_COLORS[ev.category] ? CATEGORY_COLORS[ev.category].bg : 'var(--ocean)';
                     eventsHtml += `<div class="calendar-event-dot" style="background:${color}" title="${ev.title}">${ev.title}</div>`;
                 });
                 if (dayEvents.length > 2) {
@@ -134,7 +134,7 @@
                    </div>`
                 : '';
 
-            return `<div class="calendar-event-card" data-date="${ev.date}" style="border-left-color:${ev.color || 'var(--ocean)'}">
+            return `<div class="calendar-event-card" data-date="${ev.date}" style="border-left-color:${CATEGORY_COLORS[ev.category]?.bg || 'var(--ocean)'}">
                 <div class="calendar-event-date">${dateStr}</div>
                 <div class="calendar-event-title">${ev.title}</div>
                 ${ev.time ? `<div class="calendar-event-time">${ev.time}</div>` : ''}
@@ -158,8 +158,8 @@
 
         const drawerContent = document.getElementById('drawerContent');
         drawerContent.innerHTML = `
-            <div class="drawer-category" style="background:${ev.color || 'var(--ocean)'}20; color:${ev.color || 'var(--ocean)'}">
-                <span class="dot" style="background:${ev.color || 'var(--ocean)'}"></span>${ev.category || 'Event'}
+            <div class="drawer-category" style="background:${CATEGORY_COLORS[ev.category]?.bg || 'var(--ocean)'}20; color:${CATEGORY_COLORS[ev.category]?.bg || 'var(--ocean)'}">
+                <span class="dot" style="background:${CATEGORY_COLORS[ev.category]?.bg || 'var(--ocean)'}"></span>${ev.category || 'Event'}
             </div>
             <h2 class="drawer-title">${ev.title}</h2>
             <div class="drawer-address-row">
@@ -191,7 +191,7 @@
             <h2 class="drawer-title">${dateStr}</h2>
             <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px;">
                 ${dayEvents.map(ev => `
-                    <div class="calendar-event-card" style="border-left-color:${ev.color || 'var(--ocean)'}; cursor:pointer;" onclick='document.getElementById("drawer").classList.remove("open"); document.getElementById("drawerOverlay").classList.remove("visible"); setTimeout(function(){ window._openCalendarEvent("${ev.date}", "${ev.title.replace(/"/g, '\\"')}"); }, 400);'>
+                    <div class="calendar-event-card" style="border-left-color:${CATEGORY_COLORS[ev.category]?.bg || 'var(--ocean)'}; cursor:pointer;" onclick='document.getElementById("drawer").classList.remove("open"); document.getElementById("drawerOverlay").classList.remove("visible"); setTimeout(function(){ window._openCalendarEvent("${ev.date}", "${ev.title.replace(/"/g, '\\"')}"); }, 400);'>
                         <div class="calendar-event-title">${ev.title}</div>
                         ${ev.time ? `<div class="calendar-event-time">${ev.time}</div>` : ''}
                         ${ev.description ? `<div class="calendar-event-desc">${ev.description}</div>` : ''}
