@@ -91,7 +91,6 @@ body.list-mode .top-bar {
 }
 
 .header-logo {
-    text-align: left;
     flex-shrink: 0;
 }
 
@@ -113,13 +112,16 @@ body.list-mode .top-bar {
 .title {
     user-select: none;
     -webkit-tap-highlight-color: transparent;
-    flex: 1;
+    justify-content: center;
+    align-items: center;
 }
 
 .subtitle {
     user-select: none;
     -webkit-tap-highlight-color: transparent;
-    flex: 1;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .top-bar h1 {

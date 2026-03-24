@@ -72,7 +72,8 @@
                 eventsHtml = '<div class="calendar-day-events">';
                 dayEvents.slice(0, 2).forEach(ev => {
                     const color = ev.category && CATEGORY_COLORS[ev.category] ? CATEGORY_COLORS[ev.category].bg : 'var(--ocean)';
-                    eventsHtml += `<div class="calendar-event-dot" style="background:${color}" title="${ev.title}">${ev.title}</div>`;
+                    const icon = ev.category && CATEGORY_ICONS[ev.category] ? CATEGORY_ICONS[ev.category] : '';
+                    eventsHtml += `<div class="calendar-event-dot" style="background:${color}" title="${ev.title}">${icon} ${ev.title}</div>`;
                 });
                 if (dayEvents.length > 2) {
                     eventsHtml += `<div class="calendar-event-dot" style="background:#7A8599">+${dayEvents.length - 2} more</div>`;
@@ -133,7 +134,6 @@
                     ${ev.location}
                    </div>`
                 : '';
-
             return `<div class="calendar-event-card" data-date="${ev.date}" style="border-left-color:${CATEGORY_COLORS[ev.category]?.bg || 'var(--ocean)'}">
                 <div class="calendar-event-date">${dateStr}</div>
                 <div class="calendar-event-title">${ev.title}</div>

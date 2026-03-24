@@ -223,10 +223,17 @@ body.calendar-mode .top-bar {
     gap: 2px;
 }
 
+.calendar-event-dot svg {
+    width: 14px;
+    height: 14px;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+
 .calendar-event-dot {
     font-size: 10px;
     font-weight: 600;
-    padding: 1px 4px;
+    padding: 2px 4px;
     border-radius: 4px;
     white-space: nowrap;
     overflow: hidden;

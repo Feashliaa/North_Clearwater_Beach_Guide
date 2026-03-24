@@ -18,12 +18,11 @@ const CATEGORY_ICONS = {
         <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 00-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/>
     </svg>`,
     attractions: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M2 9a3 3 0 010-6h20a3 3 0 110 6"/><path d="M2 15a3 3 0 000 6h20a3 3 0 100-6"/><path d="M2 9v6"/><path d="M22 9v6"/><path d="M9 3v18"/>
+    <circle cx="12" cy="12" r="10"/>
+    <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
     </svg>`,
-    nature: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
-        <path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
-        <path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
+    nature: `<svg width="18" height="18" viewBox="0 0 32 32" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M11.177 1.287c-1.75.007-3.372.363-4.163.61 0 0 7.174 1.217 7.771 6.17-5.451-7.86-11.397 1.646-11.397 1.646 1.24-.325 4.79-1.291 7.16-.883 1.622.279 3.203 1.749 3.135 1.73-3.865.951-10.006 18.153-8.963 19.55.93 1.068 1.861.704 2.79.162.46-3.646 4.052-19.641 8.447-18.35h.002c.37.127.72.349.739.688.036.647-.381 1.703-.283 2.437.229 1.703.562 2.296 1.047 2.89 1.158-.651 2.267-2.999 2.496-4.216 1.038.455 2.706 1.507 4.068 5.417.712-3.664-.315-6.554-3.683-7.837 1.459-.631 7.809 2.56 8.584 4.339.754-3.207-4.58-7.131-9.02-6.922.851-.222 1.787.037 2.677-.618 1.195-.88 2.588-1.637 3.886-2.451-4.366-1.899-8.395-.961-8.679 1.004-.223-4.363-3.608-5.379-6.612-5.366z"/>
     </svg>`,
     shopping: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 01-8 0"/>
@@ -35,8 +34,8 @@ const CATEGORY_ICONS = {
         <path d="M5 17h14v-5l-2-5H7L5 12v5z"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/><path d="M5 12h14"/><path d="M9 7v5"/><path d="M15 7v5"/>
     </svg>`,
     hotels: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M2 21h20"/><path d="M5 21v-8a3 3 0 013-3h8a3 3 0 013 3v8"/><path d="M9 10h.01"/><path d="M15 10h.01"/>
-    </svg>`
+    <path d="M2 4v16"/><path d="M2 8h18a2 2 0 012 2v10"/><path d="M2 17h20"/><path d="M6 8v2"/>
+    </svg>`,
 };
 
 
