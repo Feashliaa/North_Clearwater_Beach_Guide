@@ -181,7 +181,7 @@
         document.getElementById('drawerOverlay').classList.add('visible');
     }
 
-    // - Open list of events for a day in drawer -
+    // - Open list of events for a day in drawer - 
     function openEventListDrawer(date, dayEvents) {
         const d = new Date(date + 'T00:00:00');
         const dateStr = d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
