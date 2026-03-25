@@ -1249,6 +1249,17 @@ body.list-mode .list-panel {
         display: none;
     }
 
+    .custom-marker {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .custom-marker svg {
+        width: 18px;
+        height: 18px;
+    }
+
     #map {
         margin-right: 0;
         width: 100%;

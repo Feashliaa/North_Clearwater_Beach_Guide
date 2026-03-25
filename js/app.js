@@ -138,19 +138,21 @@ async function loadPois() {
 function createMarkers() {
     markers.forEach(m => map.removeLayer(m.leafletMarker));
     markers = [];
-
-    POIS.forEach(poi => {
+    const isMobile = window.innerWidth <= 730;
+    POIS.forEach((poi, idx) => {
+        const num = idx + 1;
+        const html = isMobile
+            ? `<div class="custom-marker cat-${poi.category}">${CATEGORY_ICONS[poi.category] || num}</div>`
+            : `<div class="custom-marker cat-${poi.category}" data-num="${num}">${num}</div>`;
         const icon = L.divIcon({
             className: '',
-            html: `<div class="custom-marker cat-${poi.category}" data-num="${POIS.indexOf(poi) + 1}">${POIS.indexOf(poi) + 1}</div>`,
+            html,
             iconSize: [36, 36],
             iconAnchor: [18, 18]
         });
-
         const leafletMarker = L.marker([poi.lat, poi.lng], { icon })
             .addTo(map)
             .on('click', () => openDrawer(poi));
-
         markers.push({ poi, leafletMarker });
     });
 }
@@ -628,4 +630,13 @@ initApp();
 document.querySelectorAll('.filter-pill').forEach(pill => {
     pill.addEventListener('mouseenter', () => pill.classList.add('hovered'));
     pill.addEventListener('mouseleave', () => pill.classList.remove('hovered'));
+});
+
+let lastMobile = window.innerWidth <= 730;
+window.addEventListener('resize', () => {
+    const isMobile = window.innerWidth <= 730;
+    if (isMobile !== lastMobile) {
+        lastMobile = isMobile;
+        createMarkers();
+    }
 });

@@ -184,12 +184,13 @@
         const dateStr = d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
 
         const drawerContent = document.getElementById('drawerContent');
+        
         drawerContent.innerHTML = `
             <h2 class="drawer-title">${dateStr}</h2>
             <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px;">
                 ${dayEvents.map(ev => `
                     <div class="calendar-event-card" style="border-left-color:${CATEGORY_COLORS[ev.category]?.bg || 'var(--ocean)'}; cursor:pointer;" onclick='document.getElementById("drawer").classList.remove("open"); document.getElementById("drawerOverlay").classList.remove("visible"); setTimeout(function(){ window._openCalendarEvent("${ev.date}", "${ev.title.replace(/"/g, '\\"')}"); }, 400);'>
-                        <div class="calendar-event-title">${ev.title}</div>
+                        <div class="calendar-event-title">${ev.category && CATEGORY_ICONS[ev.category] ? CATEGORY_ICONS[ev.category] : ''}${ev.title}</div>
                         ${ev.time ? `<div class="calendar-event-time">${ev.time}</div>` : ''}
                         ${ev.description ? `<div class="calendar-event-desc">${ev.description}</div>` : ''}
                     </div>
